@@ -1,0 +1,8 @@
+version: 2.0.0
+files:
+  - url: VD-OverlayTools-2.0.0-x64.exe
+    sha512: cMAksHRHaXmAWaGIAoumwYK5RUO3++KheAF18vKqNI1LPVRpPkkZPWDkgYnPlJuT+CiXMC6TUk8LoA4SNJSJtg==
+    size: 79644100
+path: VD-OverlayTools-2.0.0-x64.exe
+sha512: cMAksHRHaXmAWaGIAoumwYK5RUO3++KheAF18vKqNI1LPVRpPkkZPWDkgYnPlJuT+CiXMC6TUk8LoA4SNJSJtg==
+releaseDate: '2026-03-23T04:08:38.799Z'

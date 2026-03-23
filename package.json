@@ -1,0 +1,54 @@
+{
+  "name": "vd-overlaytools",
+  "version": "2.0.0",
+  "description": "Map overlay app (4v1 / 1v1 / Maps) with transparent, always-on-top overlay",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "release": "electron-builder --win portable zip",
+    "release:portable": "electron-builder --win portable",
+    "release:zip": "electron-builder --win zip",
+    "release:setup": "electron-builder --win nsis",
+    "host:start": "powershell -ExecutionPolicy Bypass -File scripts/start-auth-host.ps1",
+    "host:stop": "powershell -ExecutionPolicy Bypass -File scripts/stop-auth-host.ps1",
+    "host:status": "powershell -ExecutionPolicy Bypass -File scripts/status-auth-host.ps1"
+  },
+  "devDependencies": {
+    "electron": "^25.0.0",
+    "electron-builder": "^24.13.3",
+    "electron-updater": "^6.8.3",
+    "png-to-ico": "^3.0.1"
+  },
+  "build": {
+    "appId": "com.vd.overlaytools",
+    "productName": "VD OverlayTools",
+    "asar": true,
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "overlay_preload.js",
+      "src/**/*",
+      "images/**/*",
+      "fonts/**/*",
+      "package.json",
+      "!web-portal/**/*",
+      "!**/*.map"
+    ],
+    "win": {
+      "target": [
+        "portable",
+        "zip",
+        "nsis"
+      ],
+      "icon": "images/app-icon.ico",
+      "artifactName": "VD-OverlayTools-${version}-${arch}.${ext}"
+    },
+    "nsis": {
+      "installerIcon": "images/app-icon.ico",
+      "uninstallerIcon": "images/app-icon.ico"
+    }
+  }
+}

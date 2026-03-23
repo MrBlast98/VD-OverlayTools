@@ -1,0 +1,169 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VD Portal</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <header class="top">
+        <h1>VD User Portal</h1>
+        <p>Role-based access: user, premium, tester, dev</p>
+      </header>
+
+      <section id="authCard" class="card">
+        <h2>Login</h2>
+        <div class="form-grid">
+          <input id="loginUser" placeholder="Username" autocomplete="username" />
+          <input id="loginPass" type="password" placeholder="Password" autocomplete="current-password" />
+          <button id="loginBtn">Login</button>
+        </div>
+        <p id="authMsg" class="msg hidden"></p>
+      </section>
+
+      <section id="appCard" class="card hidden">
+        <div class="row between">
+          <div>
+            <h2 id="welcome">Welcome</h2>
+            <span id="roleBadge" class="badge">role</span>
+          </div>
+          <button id="logoutBtn" class="ghost">Logout</button>
+        </div>
+
+        <div class="app-layout">
+          <section class="main-column">
+            <section class="dev-box">
+              <h4>Account Settings</h4>
+              <div class="dev-grid">
+                <div class="dev-box">
+                  <h4>Change Name</h4>
+                  <div class="form-grid single-col">
+                    <input id="changeNameInput" placeholder="new username" />
+                    <input id="changeNamePassword" type="password" placeholder="current password" autocomplete="current-password" />
+                    <button id="changeNameBtn">Change Name</button>
+                  </div>
+                  <p id="changeNameMsg" class="msg hidden"></p>
+                </div>
+
+                <div class="dev-box">
+                  <h4>Reset Password</h4>
+                  <div class="form-grid single-col">
+                    <input id="resetCurrentPassword" type="password" placeholder="current password" autocomplete="current-password" />
+                    <input id="resetNewPassword" type="password" placeholder="new password" autocomplete="new-password" />
+                    <button id="resetPasswordBtn">Reset Password</button>
+                  </div>
+                  <p id="resetPasswordMsg" class="msg hidden"></p>
+                </div>
+              </div>
+            </section>
+
+            <section id="lockedPanel" class="locked-panel hidden">
+              <h3>Dashboard Access: LOCKED</h3>
+              <p class="muted">Your current role does not have access to the Developer Dashboard.</p>
+              <div class="redeem-box">
+                <label for="redeemCodeInput">Redeem Premium/Tester Code</label>
+                <div class="row">
+                  <input id="redeemCodeInput" placeholder="Enter code" />
+                  <button id="redeemCodeBtn">Redeem</button>
+                </div>
+                <p id="redeemMsg" class="msg hidden"></p>
+              </div>
+            </section>
+
+            <section id="devPanel" class="dev hidden">
+              <div class="dev-grid">
+                <div class="dev-box">
+                  <h4>Add User</h4>
+                  <div class="form-grid single-col">
+                    <input id="addUserUsername" placeholder="username" />
+                    <input id="addUserPassword" type="password" placeholder="temporary password" />
+                    <select id="addUserRole">
+                      <option value="user">user</option>
+                      <option value="premium">premium</option>
+                      <option value="tester">tester</option>
+                      <option value="dev">dev</option>
+                    </select>
+                    <button id="addUserBtn">Add User</button>
+                  </div>
+                  <p id="addUserMsg" class="msg hidden"></p>
+                </div>
+
+                <div class="dev-box">
+                  <h4>Generate Premium Codes</h4>
+                  <div class="form-grid single-col">
+                    <select id="codeRole">
+                      <option value="premium">premium</option>
+                      <option value="tester">tester</option>
+                    </select>
+                    <input id="codeCount" type="number" min="1" max="50" value="1" />
+                    <input id="codeExpiresDays" type="number" min="1" max="365" value="30" />
+                    <button id="generateCodesBtn">Generate Codes</button>
+                  </div>
+                  <p id="codesMsg" class="msg hidden"></p>
+                </div>
+              </div>
+
+              <div class="row between">
+                <h3>Developer Dashboard</h3>
+                <button id="refreshBtn" class="ghost">Refresh</button>
+              </div>
+
+              <div class="summary" id="summary"></div>
+
+              <table>
+                <thead>
+                  <tr>
+                    <th>User</th>
+                    <th>Role</th>
+                    <th>Ban</th>
+                    <th>Status</th>
+                    <th>Last Seen</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="usersTable"></tbody>
+              </table>
+
+              <h4 class="codes-heading">Recent Premium/Tester Codes</h4>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Code</th>
+                    <th>Role</th>
+                    <th>Expires</th>
+                    <th>Redeemed</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="codesTable"></tbody>
+              </table>
+            </section>
+          </section>
+
+          <aside id="premiumSidebar" class="side-column hidden">
+            <div class="premium-card">
+              <h3>Buy Premium</h3>
+              <p>Unlock premium features and priority access in VD OverlayTools.</p>
+              <button id="buyPremiumBtn">Buy Premium</button>
+            </div>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <div id="discordWarningModal" class="modal-overlay hidden">
+      <div class="modal-card">
+        <h3>Open Discord?</h3>
+        <p>You will be taken to VD OverlayTools Discord.</p>
+        <div class="modal-actions">
+          <button id="discordContinueBtn">Continue</button>
+          <button id="discordCancelBtn" class="ghost">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>

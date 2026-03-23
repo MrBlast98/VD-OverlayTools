@@ -1,0 +1,1241 @@
+{
+  "users": [
+    {
+      "id": "e9ebac95-6701-4cdf-a1c1-9a22cbec5068",
+      "username": "dev",
+      "passwordHash": "$2b$10$sZ1SEIqP0wqzXo7VCtMAQu5ynj1TzvcI1wb97IamomaT3s0499YP.",
+      "role": "dev",
+      "createdAt": "2026-03-22T23:22:40.617Z",
+      "lastLoginAt": "2026-03-23T03:14:19.143Z",
+      "lastSeenAt": "2026-03-23T03:30:17.363Z",
+      "isBanned": false,
+      "banReason": null,
+      "bannedAt": null
+    },
+    {
+      "id": "89252400-07fd-4f1a-acdf-30f55ff4bec1",
+      "username": "xirk",
+      "passwordHash": "$2b$10$zlztt4XSQbeg.CryLU4OguOku6pthtLdhK2eblH3VQhBgRw1sim8G",
+      "role": "tester",
+      "createdAt": "2026-03-22T23:23:00.489Z",
+      "lastLoginAt": "2026-03-23T03:15:12.779Z",
+      "lastSeenAt": "2026-03-23T03:15:12.779Z",
+      "isBanned": false,
+      "banReason": null,
+      "bannedAt": null
+    },
+    {
+      "id": "52261922-768f-485f-9665-3d84752c2b25",
+      "username": "asap",
+      "passwordHash": "$2b$10$ENEVXvpk4ppRS3uBwSyQdOpdlcwjIn53dZjPdfK1qIID/ShVdIeqi",
+      "role": "tester",
+      "createdAt": "2026-03-22T23:23:07.242Z",
+      "lastLoginAt": null,
+      "lastSeenAt": null,
+      "isBanned": false,
+      "banReason": null,
+      "bannedAt": null
+    },
+    {
+      "id": "f2ab4511-dce8-4bf6-88fa-edd8e6c6453b",
+      "username": "chicago",
+      "passwordHash": "$2b$10$omkXkCg3YfKdWXFbbgaZP.7Hh6BjnAB.BeAiUaYp0JzoKItqimXZu",
+      "role": "tester",
+      "createdAt": "2026-03-22T23:23:16.809Z",
+      "lastLoginAt": null,
+      "lastSeenAt": null,
+      "isBanned": false,
+      "banReason": null,
+      "bannedAt": null
+    },
+    {
+      "id": "f5d10eb3-be7f-42eb-adec-b371d839b4d1",
+      "username": "falhey",
+      "passwordHash": "$2b$10$jOkjihYIQLWsabt.3UIake1kkbb.NpXwROuYC6XkFBdeLmaxSXXSm",
+      "role": "dev",
+      "createdAt": "2026-03-22T23:23:22.866Z",
+      "lastLoginAt": "2026-03-23T02:49:13.934Z",
+      "lastSeenAt": "2026-03-23T02:49:13.934Z",
+      "isBanned": false,
+      "banReason": null,
+      "bannedAt": null
+    },
+    {
+      "id": "1c35cc85-0bba-4201-bd7c-f0bd4d089045",
+      "username": "sharky",
+      "passwordHash": "$2b$10$qDIB2D.hjpVN6N0iGTzWs.9bdgdwyPxggPHTFtCH7HOHLf7RbTkvi",
+      "role": "user",
+      "createdAt": "2026-03-22T23:27:34.785Z",
+      "lastLoginAt": "2026-03-22T23:27:40.633Z",
+      "lastSeenAt": "2026-03-22T23:27:40.633Z",
+      "isBanned": true,
+      "banReason": "dd",
+      "bannedAt": "2026-03-22T23:33:06.332Z"
+    },
+    {
+      "id": "fec66b12-0124-4972-967e-3189d2dde0c3",
+      "username": "sharky2",
+      "passwordHash": "$2b$10$rx2wqqUaVy7zE9Uav8QKvOvP/eM1o0P.SNfmqAjK4a2htwKv1pGHK",
+      "role": "user",
+      "createdAt": "2026-03-22T23:33:19.403Z",
+      "lastLoginAt": "2026-03-22T23:51:10.767Z",
+      "lastSeenAt": "2026-03-22T23:51:10.767Z",
+      "isBanned": false,
+      "banReason": null,
+      "bannedAt": null
+    },
+    {
+      "id": "6edd53a4-06d7-4d7d-9eed-e799c32375cf",
+      "username": "jacket",
+      "passwordHash": "$2b$10$jmsxBbKTKhof5APyVKlYSOjE113sYdNiTiiA5jPCYeglNc4tLcnNK",
+      "role": "premium",
+      "createdAt": "2026-03-23T01:24:07.146Z",
+      "lastLoginAt": "2026-03-23T03:19:38.484Z",
+      "lastSeenAt": "2026-03-23T03:19:38.484Z",
+      "isBanned": false,
+      "banReason": null,
+      "bannedAt": null
+    }
+  ],
+  "premiumCodes": [
+    {
+      "id": "d3b50190-0acd-44d7-837d-7c31ea727c3e",
+      "code": "PREMIUM-AB751A11-925F",
+      "role": "premium",
+      "createdAt": "2026-03-22T23:23:30.933Z",
+      "createdBy": "e9ebac95-6701-4cdf-a1c1-9a22cbec5068",
+      "expiresAt": "2027-03-22T23:23:30.933Z",
+      "redeemedBy": null,
+      "redeemedAt": null,
+      "isActive": true
+    },
+    {
+      "id": "80348822-6c95-490a-846b-e7ccf7de8583",
+      "code": "PREMIUM-6B4B4BAB-2A48",
+      "role": "premium",
+      "createdAt": "2026-03-22T23:23:46.874Z",
+      "createdBy": "e9ebac95-6701-4cdf-a1c1-9a22cbec5068",
+      "expiresAt": "2027-03-22T23:23:46.874Z",
+      "redeemedBy": null,
+      "redeemedAt": null,
+      "isActive": true
+    },
+    {
+      "id": "26b5d19a-0a7e-4330-b3d2-d681f6f47e5e",
+      "code": "PREMIUM-80B9B2D9-CA29",
+      "role": "premium",
+      "createdAt": "2026-03-22T23:23:46.874Z",
+      "createdBy": "e9ebac95-6701-4cdf-a1c1-9a22cbec5068",
+      "expiresAt": "2027-03-22T23:23:46.874Z",
+      "redeemedBy": null,
+      "redeemedAt": null,
+      "isActive": true
+    },
+    {
+      "id": "b6e37381-f9f7-4866-afd4-aa9abb51875b",
+      "code": "PREMIUM-A494110B-FC91",
+      "role": "premium",
+      "createdAt": "2026-03-22T23:23:46.874Z",
+      "createdBy": "e9ebac95-6701-4cdf-a1c1-9a22cbec5068",
+      "expiresAt": "2027-03-22T23:23:46.874Z",
+      "redeemedBy": null,
+      "redeemedAt": null,
+      "isActive": true
+    },
+    {
+      "id": "0ed7946d-08b5-452e-8c71-24fa933f3878",
+      "code": "PREMIUM-FBB85D6E-ADF9",
+      "role": "premium",
+      "createdAt": "2026-03-22T23:23:46.874Z",
+      "createdBy": "e9ebac95-6701-4cdf-a1c1-9a22cbec5068",
+      "expiresAt": "2027-03-22T23:23:46.874Z",
+      "redeemedBy": null,
+      "redeemedAt": null,
+      "isActive": true
+    },
+    {
+      "id": "890aa513-f113-46dc-91d4-9c4568a48f39",
+      "code": "PREMIUM-8991D3CF-53EA",
+      "role": "premium",
+      "createdAt": "2026-03-22T23:23:46.874Z",
+      "createdBy": "e9ebac95-6701-4cdf-a1c1-9a22cbec5068",
+      "expiresAt": "2027-03-22T23:23:46.874Z",
+      "redeemedBy": null,
+      "redeemedAt": null,
+      "isActive": true
+    },
+    {
+      "id": "9b0bfdeb-a0c3-4086-bd05-77c5ceab3396",
+      "code": "PREMIUM-58E53916-D769",
+      "role": "premium",
+      "createdAt": "2026-03-22T23:23:46.875Z",
+      "createdBy": "e9ebac95-6701-4cdf-a1c1-9a22cbec5068",
+      "expiresAt": "2027-03-22T23:23:46.874Z",
+      "redeemedBy": null,
+      "redeemedAt": null,
+      "isActive": true
+    },
+    {
+      "id": "fb29f377-0b83-454c-b4b1-f010cf4f6f58",
+      "code": "PREMIUM-D111C08B-F1D8",
+      "role": "premium",
+      "createdAt": "2026-03-22T23:23:46.875Z",
+      "createdBy": "e9ebac95-6701-4cdf-a1c1-9a22cbec5068",
+      "expiresAt": "2027-03-22T23:23:46.874Z",
+      "redeemedBy": null,
+      "redeemedAt": null,
+      "isActive": true
+    },
+    {
+      "id": "6e79011a-df70-43dc-a9c4-b501547a936e",
+      "code": "PREMIUM-E2BA6C46-5AA8",
+      "role": "premium",
+      "createdAt": "2026-03-22T23:23:46.875Z",
+      "createdBy": "e9ebac95-6701-4cdf-a1c1-9a22cbec5068",
+      "expiresAt": "2027-03-22T23:23:46.874Z",
+      "redeemedBy": null,
+      "redeemedAt": null,
+      "isActive": true
+    },
+    {
+      "id": "4967ccee-4fda-43fb-869c-a98e506524a9",
+      "code": "PREMIUM-4A7466A4-91CF",
+      "role": "premium",
+      "createdAt": "2026-03-22T23:23:46.875Z",
+      "createdBy": "e9ebac95-6701-4cdf-a1c1-9a22cbec5068",
+      "expiresAt": "2027-03-22T23:23:46.874Z",
+      "redeemedBy": null,
+      "redeemedAt": null,
+      "isActive": true
+    },
+    {
+      "id": "12f053ec-a079-4be3-aadf-1c1ffdc74e46",
+      "code": "PREMIUM-8743A1B7-A0BB",
+      "role": "premium",
+      "createdAt": "2026-03-22T23:23:46.875Z",
+      "createdBy": "e9ebac95-6701-4cdf-a1c1-9a22cbec5068",
+      "expiresAt": "2027-03-22T23:23:46.874Z",
+      "redeemedBy": null,
+      "redeemedAt": null,
+      "isActive": true
+    },
+    {
+      "id": "0a41c1b5-2779-4662-9b16-672e56d4890d",
+      "code": "PREMIUM-E6F06A58-1177",
+      "role": "premium",
+      "createdAt": "2026-03-22T23:23:46.875Z",
+      "createdBy": "e9ebac95-6701-4cdf-a1c1-9a22cbec5068",
+      "expiresAt": "2027-03-22T23:23:46.874Z",
+      "redeemedBy": null,
+      "redeemedAt": null,
+      "isActive": true
+    },
+    {
+      "id": "210ec338-d39b-47f3-a39b-e3ce79eed39c",
+      "code": "PREMIUM-DF1C0E53-2B66",
+      "role": "premium",
+      "createdAt": "2026-03-22T23:23:46.875Z",
+      "createdBy": "e9ebac95-6701-4cdf-a1c1-9a22cbec5068",
+      "expiresAt": "2027-03-22T23:23:46.874Z",
+      "redeemedBy": null,
+      "redeemedAt": null,
+      "isActive": true
+    },
+    {
+      "id": "87993eaa-b3ce-4ff3-bab4-1f1b798900a2",
+      "code": "PREMIUM-CD2E8AD6-180C",
+      "role": "premium",
+      "createdAt": "2026-03-22T23:23:46.875Z",
+      "createdBy": "e9ebac95-6701-4cdf-a1c1-9a22cbec5068",
+      "expiresAt": "2027-03-22T23:23:46.874Z",
+      "redeemedBy": null,
+      "redeemedAt": null,
+      "isActive": true
+    },
+    {
+      "id": "1e9808a9-433f-4e8f-93d9-918b4907efdf",
+      "code": "PREMIUM-C80F6D59-523E",
+      "role": "premium",
+      "createdAt": "2026-03-22T23:23:46.875Z",
+      "createdBy": "e9ebac95-6701-4cdf-a1c1-9a22cbec5068",
+      "expiresAt": "2027-03-22T23:23:46.874Z",
+      "redeemedBy": null,
+      "redeemedAt": null,
+      "isActive": true
+    },
+    {
+      "id": "1b8cf5c7-7f66-4be7-b850-b49d2186b7b5",
+      "code": "PREMIUM-968D0D62-A721",
+      "role": "premium",
+      "createdAt": "2026-03-22T23:23:46.875Z",
+      "createdBy": "e9ebac95-6701-4cdf-a1c1-9a22cbec5068",
+      "expiresAt": "2027-03-22T23:23:46.874Z",
+      "redeemedBy": null,
+      "redeemedAt": null,
+      "isActive": true
+    },
+    {
+      "id": "e95cad7e-9030-4c3b-800e-1fc31d612fd2",
+      "code": "PREMIUM-EE763996-3305",
+      "role": "premium",
+      "createdAt": "2026-03-22T23:23:46.875Z",
+      "createdBy": "e9ebac95-6701-4cdf-a1c1-9a22cbec5068",
+      "expiresAt": "2027-03-22T23:23:46.874Z",
+      "redeemedBy": null,
+      "redeemedAt": null,
+      "isActive": true
+    },
+    {
+      "id": "ca515902-2840-4b1b-9278-570eb3f60dbf",
+      "code": "PREMIUM-B3F6366B-5BFB",
+      "role": "premium",
+      "createdAt": "2026-03-22T23:23:46.875Z",
+      "createdBy": "e9ebac95-6701-4cdf-a1c1-9a22cbec5068",
+      "expiresAt": "2027-03-22T23:23:46.874Z",
+      "redeemedBy": null,
+      "redeemedAt": null,
+      "isActive": true
+    },
+    {
+      "id": "b1879efd-00ec-430b-b150-88a10fa11841",
+      "code": "PREMIUM-C191F724-F1A2",
+      "role": "premium",
+      "createdAt": "2026-03-22T23:23:46.875Z",
+      "createdBy": "e9ebac95-6701-4cdf-a1c1-9a22cbec5068",
+      "expiresAt": "2027-03-22T23:23:46.874Z",
+      "redeemedBy": null,
+      "redeemedAt": null,
+      "isActive": true
+    },
+    {
+      "id": "a7c1c6ad-f85e-4826-ab52-12715dfe3780",
+      "code": "PREMIUM-E9B07943-11BF",
+      "role": "premium",
+      "createdAt": "2026-03-22T23:23:46.875Z",
+      "createdBy": "e9ebac95-6701-4cdf-a1c1-9a22cbec5068",
+      "expiresAt": "2027-03-22T23:23:46.874Z",
+      "redeemedBy": null,
+      "redeemedAt": null,
+      "isActive": true
+    },
+    {
+      "id": "2387c1d5-f8b8-4f6a-903a-e2c05406e0a6",
+      "code": "PREMIUM-C5EDA276-87F3",
+      "role": "premium",
+      "createdAt": "2026-03-22T23:23:46.875Z",
+      "createdBy": "e9ebac95-6701-4cdf-a1c1-9a22cbec5068",
+      "expiresAt": "2027-03-22T23:23:46.874Z",
+      "redeemedBy": null,
+      "redeemedAt": null,
+      "isActive": true
+    },
+    {
+      "id": "7c1b9e06-f44c-4dde-97f8-042a44505031",
+      "code": "PREMIUM-F7A5D776-136A",
+      "role": "premium",
+      "createdAt": "2026-03-22T23:23:46.875Z",
+      "createdBy": "e9ebac95-6701-4cdf-a1c1-9a22cbec5068",
+      "expiresAt": "2027-03-22T23:23:46.874Z",
+      "redeemedBy": null,
+      "redeemedAt": null,
+      "isActive": true
+    },
+    {
+      "id": "b111de38-2609-450b-a954-6e299f434820",
+      "code": "PREMIUM-011AD891-0DA2",
+      "role": "premium",
+      "createdAt": "2026-03-22T23:23:46.875Z",
+      "createdBy": "e9ebac95-6701-4cdf-a1c1-9a22cbec5068",
+      "expiresAt": "2027-03-22T23:23:46.874Z",
+      "redeemedBy": null,
+      "redeemedAt": null,
+      "isActive": true
+    },
+    {
+      "id": "323fc1e9-225c-484b-873b-73feba6d5b3a",
+      "code": "PREMIUM-DA749703-20AC",
+      "role": "premium",
+      "createdAt": "2026-03-22T23:23:46.875Z",
+      "createdBy": "e9ebac95-6701-4cdf-a1c1-9a22cbec5068",
+      "expiresAt": "2027-03-22T23:23:46.874Z",
+      "redeemedBy": null,
+      "redeemedAt": null,
+      "isActive": true
+    },
+    {
+      "id": "9c359b9d-35ec-4025-89a9-18d162cc5fb5",
+      "code": "PREMIUM-F3FC99EF-DD62",
+      "role": "premium",
+      "createdAt": "2026-03-22T23:23:46.875Z",
+      "createdBy": "e9ebac95-6701-4cdf-a1c1-9a22cbec5068",
+      "expiresAt": "2027-03-22T23:23:46.874Z",
+      "redeemedBy": null,
+      "redeemedAt": null,
+      "isActive": true
+    },
+    {
+      "id": "b4034d5c-da6b-4e25-9236-cc7bb3b979e6",
+      "code": "PREMIUM-6274110E-9DC6",
+      "role": "premium",
+      "createdAt": "2026-03-22T23:23:46.876Z",
+      "createdBy": "e9ebac95-6701-4cdf-a1c1-9a22cbec5068",
+      "expiresAt": "2027-03-22T23:23:46.874Z",
+      "redeemedBy": null,
+      "redeemedAt": null,
+      "isActive": true
+    },
+    {
+      "id": "b9a623d6-0fb3-4229-9f5b-5094bbd2ec01",
+      "code": "PREMIUM-6229C921-24E0",
+      "role": "premium",
+      "createdAt": "2026-03-22T23:23:46.876Z",
+      "createdBy": "e9ebac95-6701-4cdf-a1c1-9a22cbec5068",
+      "expiresAt": "2027-03-22T23:23:46.874Z",
+      "redeemedBy": null,
+      "redeemedAt": null,
+      "isActive": true
+    },
+    {
+      "id": "9a03e9d1-e4fd-4daa-9a13-6705ba10baed",
+      "code": "PREMIUM-0A7685CE-E753",
+      "role": "premium",
+      "createdAt": "2026-03-22T23:23:46.876Z",
+      "createdBy": "e9ebac95-6701-4cdf-a1c1-9a22cbec5068",
+      "expiresAt": "2027-03-22T23:23:46.874Z",
+      "redeemedBy": null,
+      "redeemedAt": null,
+      "isActive": true
+    },
+    {
+      "id": "332cc16c-5a7a-4f01-b1e7-9335b1caaccc",
+      "code": "PREMIUM-69113233-977D",
+      "role": "premium",
+      "createdAt": "2026-03-22T23:23:46.876Z",
+      "createdBy": "e9ebac95-6701-4cdf-a1c1-9a22cbec5068",
+      "expiresAt": "2027-03-22T23:23:46.874Z",
+      "redeemedBy": null,
+      "redeemedAt": null,
+      "isActive": true
+    },
+    {
+      "id": "8a2db3f4-d9dd-40e5-bebe-e11d291cd6c0",
+      "code": "PREMIUM-F177E2C2-1AE5",
+      "role": "premium",
+      "createdAt": "2026-03-22T23:23:46.876Z",
+      "createdBy": "e9ebac95-6701-4cdf-a1c1-9a22cbec5068",
+      "expiresAt": "2027-03-22T23:23:46.874Z",
+      "redeemedBy": null,
+      "redeemedAt": null,
+      "isActive": true
+    },
+    {
+      "id": "32a0c12e-508e-4f07-a8e0-5e5657a8662b",
+      "code": "PREMIUM-49C7239B-9AEE",
+      "role": "premium",
+      "createdAt": "2026-03-22T23:23:46.876Z",
+      "createdBy": "e9ebac95-6701-4cdf-a1c1-9a22cbec5068",
+      "expiresAt": "2027-03-22T23:23:46.874Z",
+      "redeemedBy": null,
+      "redeemedAt": null,
+      "isActive": true
+    },
+    {
+      "id": "c5f09c86-587d-436e-9509-781bdd732c22",
+      "code": "PREMIUM-D8C954AC-6889",
+      "role": "premium",
+      "createdAt": "2026-03-22T23:23:46.876Z",
+      "createdBy": "e9ebac95-6701-4cdf-a1c1-9a22cbec5068",
+      "expiresAt": "2027-03-22T23:23:46.874Z",
+      "redeemedBy": null,
+      "redeemedAt": null,
+      "isActive": true
+    },
+    {
+      "id": "62045a6a-80f3-4476-91d3-3a03e948e140",
+      "code": "PREMIUM-5579E3D0-756C",
+      "role": "premium",
+      "createdAt": "2026-03-22T23:23:46.876Z",
+      "createdBy": "e9ebac95-6701-4cdf-a1c1-9a22cbec5068",
+      "expiresAt": "2027-03-22T23:23:46.874Z",
+      "redeemedBy": null,
+      "redeemedAt": null,
+      "isActive": true
+    },
+    {
+      "id": "0a16613d-7de9-403a-973f-1bdc99cb61ed",
+      "code": "PREMIUM-46EA3ED1-5D13",
+      "role": "premium",
+      "createdAt": "2026-03-22T23:23:46.876Z",
+      "createdBy": "e9ebac95-6701-4cdf-a1c1-9a22cbec5068",
+      "expiresAt": "2027-03-22T23:23:46.874Z",
+      "redeemedBy": null,
+      "redeemedAt": null,
+      "isActive": true
+    },
+    {
+      "id": "9fe2aa4e-272c-40ae-8c2d-9df952379b81",
+      "code": "PREMIUM-8241401B-73F5",
+      "role": "premium",
+      "createdAt": "2026-03-22T23:23:46.876Z",
+      "createdBy": "e9ebac95-6701-4cdf-a1c1-9a22cbec5068",
+      "expiresAt": "2027-03-22T23:23:46.874Z",
+      "redeemedBy": null,
+      "redeemedAt": null,
+      "isActive": true
+    },
+    {
+      "id": "08c86b31-3fae-42d5-b90c-ace268be6853",
+      "code": "PREMIUM-45A428F5-13E5",
+      "role": "premium",
+      "createdAt": "2026-03-22T23:23:46.876Z",
+      "createdBy": "e9ebac95-6701-4cdf-a1c1-9a22cbec5068",
+      "expiresAt": "2027-03-22T23:23:46.874Z",
+      "redeemedBy": null,
+      "redeemedAt": null,
+      "isActive": true
+    },
+    {
+      "id": "d548942c-674c-43bb-a901-c4c5a2f5d085",
+      "code": "PREMIUM-72CD5881-EE49",
+      "role": "premium",
+      "createdAt": "2026-03-22T23:23:46.876Z",
+      "createdBy": "e9ebac95-6701-4cdf-a1c1-9a22cbec5068",
+      "expiresAt": "2027-03-22T23:23:46.874Z",
+      "redeemedBy": null,
+      "redeemedAt": null,
+      "isActive": true
+    },
+    {
+      "id": "8fc460c1-a9d0-4540-b6a6-9e201c9c7659",
+      "code": "PREMIUM-6C1DC568-0538",
+      "role": "premium",
+      "createdAt": "2026-03-22T23:23:46.876Z",
+      "createdBy": "e9ebac95-6701-4cdf-a1c1-9a22cbec5068",
+      "expiresAt": "2027-03-22T23:23:46.874Z",
+      "redeemedBy": null,
+      "redeemedAt": null,
+      "isActive": true
+    },
+    {
+      "id": "462509bb-1893-45e4-a74d-b7294cb286cd",
+      "code": "PREMIUM-6AE9E3E1-9E84",
+      "role": "premium",
+      "createdAt": "2026-03-22T23:23:46.876Z",
+      "createdBy": "e9ebac95-6701-4cdf-a1c1-9a22cbec5068",
+      "expiresAt": "2027-03-22T23:23:46.874Z",
+      "redeemedBy": null,
+      "redeemedAt": null,
+      "isActive": true
+    },
+    {
+      "id": "9bd75adb-a00a-4c8a-8362-d1f83785913d",
+      "code": "PREMIUM-921FF208-C7A6",
+      "role": "premium",
+      "createdAt": "2026-03-22T23:23:46.876Z",
+      "createdBy": "e9ebac95-6701-4cdf-a1c1-9a22cbec5068",
+      "expiresAt": "2027-03-22T23:23:46.874Z",
+      "redeemedBy": null,
+      "redeemedAt": null,
+      "isActive": true
+    },
+    {
+      "id": "7791ef0f-7b98-46bd-bb6b-d7acbe101d3f",
+      "code": "PREMIUM-EF2AF2DF-2DAD",
+      "role": "premium",
+      "createdAt": "2026-03-22T23:23:46.876Z",
+      "createdBy": "e9ebac95-6701-4cdf-a1c1-9a22cbec5068",
+      "expiresAt": "2027-03-22T23:23:46.874Z",
+      "redeemedBy": null,
+      "redeemedAt": null,
+      "isActive": true
+    },
+    {
+      "id": "77285029-ae00-420b-b325-a08d80cd08fd",
+      "code": "PREMIUM-3022B375-C1CF",
+      "role": "premium",
+      "createdAt": "2026-03-22T23:23:46.876Z",
+      "createdBy": "e9ebac95-6701-4cdf-a1c1-9a22cbec5068",
+      "expiresAt": "2027-03-22T23:23:46.874Z",
+      "redeemedBy": null,
+      "redeemedAt": null,
+      "isActive": true
+    },
+    {
+      "id": "4a3bb062-1be0-4c71-ba23-7b6adc19ac5c",
+      "code": "PREMIUM-4329ACEE-2B54",
+      "role": "premium",
+      "createdAt": "2026-03-22T23:23:46.876Z",
+      "createdBy": "e9ebac95-6701-4cdf-a1c1-9a22cbec5068",
+      "expiresAt": "2027-03-22T23:23:46.874Z",
+      "redeemedBy": null,
+      "redeemedAt": null,
+      "isActive": true
+    },
+    {
+      "id": "af9b7e37-ec5d-4136-ac8a-8003ca2614a9",
+      "code": "PREMIUM-42FF68C9-D40B",
+      "role": "premium",
+      "createdAt": "2026-03-22T23:23:46.876Z",
+      "createdBy": "e9ebac95-6701-4cdf-a1c1-9a22cbec5068",
+      "expiresAt": "2027-03-22T23:23:46.874Z",
+      "redeemedBy": null,
+      "redeemedAt": null,
+      "isActive": true
+    },
+    {
+      "id": "95b8d128-33c3-4e4a-9d5c-f2026fa2bb4e",
+      "code": "PREMIUM-CAC4A1B1-809E",
+      "role": "premium",
+      "createdAt": "2026-03-22T23:23:46.876Z",
+      "createdBy": "e9ebac95-6701-4cdf-a1c1-9a22cbec5068",
+      "expiresAt": "2027-03-22T23:23:46.874Z",
+      "redeemedBy": null,
+      "redeemedAt": null,
+      "isActive": true
+    },
+    {
+      "id": "29d9cdd5-a078-4122-8b4d-7a4c7df61858",
+      "code": "PREMIUM-B216FF0E-D055",
+      "role": "premium",
+      "createdAt": "2026-03-22T23:23:46.876Z",
+      "createdBy": "e9ebac95-6701-4cdf-a1c1-9a22cbec5068",
+      "expiresAt": "2027-03-22T23:23:46.874Z",
+      "redeemedBy": null,
+      "redeemedAt": null,
+      "isActive": true
+    },
+    {
+      "id": "e3d452d3-b5bb-4ba2-82b2-51519f6819c7",
+      "code": "PREMIUM-ADBEF253-5B95",
+      "role": "premium",
+      "createdAt": "2026-03-22T23:23:46.876Z",
+      "createdBy": "e9ebac95-6701-4cdf-a1c1-9a22cbec5068",
+      "expiresAt": "2027-03-22T23:23:46.874Z",
+      "redeemedBy": null,
+      "redeemedAt": null,
+      "isActive": true
+    },
+    {
+      "id": "303ea0b6-d21a-40d5-afd2-9fc1ebf550d3",
+      "code": "PREMIUM-787AA05B-C830",
+      "role": "premium",
+      "createdAt": "2026-03-22T23:23:46.876Z",
+      "createdBy": "e9ebac95-6701-4cdf-a1c1-9a22cbec5068",
+      "expiresAt": "2027-03-22T23:23:46.874Z",
+      "redeemedBy": null,
+      "redeemedAt": null,
+      "isActive": true
+    },
+    {
+      "id": "83ec1f64-e96b-415f-9038-59392ce8b0eb",
+      "code": "PREMIUM-C7E42D0B-558A",
+      "role": "premium",
+      "createdAt": "2026-03-22T23:23:46.876Z",
+      "createdBy": "e9ebac95-6701-4cdf-a1c1-9a22cbec5068",
+      "expiresAt": "2027-03-22T23:23:46.874Z",
+      "redeemedBy": null,
+      "redeemedAt": null,
+      "isActive": true
+    },
+    {
+      "id": "9cac41d7-357c-4ee5-96b1-3f88faf6ab79",
+      "code": "PREMIUM-BCA52178-8D63",
+      "role": "premium",
+      "createdAt": "2026-03-22T23:23:46.876Z",
+      "createdBy": "e9ebac95-6701-4cdf-a1c1-9a22cbec5068",
+      "expiresAt": "2027-03-22T23:23:46.874Z",
+      "redeemedBy": null,
+      "redeemedAt": null,
+      "isActive": true
+    },
+    {
+      "id": "4ec85c4b-9382-4e7b-b08d-a1ea1e3369ea",
+      "code": "PREMIUM-E7C09137-3C87",
+      "role": "premium",
+      "createdAt": "2026-03-22T23:23:46.876Z",
+      "createdBy": "e9ebac95-6701-4cdf-a1c1-9a22cbec5068",
+      "expiresAt": "2027-03-22T23:23:46.874Z",
+      "redeemedBy": null,
+      "redeemedAt": null,
+      "isActive": true
+    }
+  ],
+  "auditLogs": [
+    {
+      "id": "51abcd2a-c6c8-47d0-8728-383d5943fe8b",
+      "event": "register",
+      "userId": "e9ebac95-6701-4cdf-a1c1-9a22cbec5068",
+      "username": "dev",
+      "ip": "::1",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+      "timestamp": "2026-03-22T23:22:40.617Z"
+    },
+    {
+      "id": "12facd07-545b-49ee-9ccc-81989773f995",
+      "event": "login",
+      "userId": "e9ebac95-6701-4cdf-a1c1-9a22cbec5068",
+      "username": "dev",
+      "ip": "::1",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+      "timestamp": "2026-03-22T23:22:46.064Z"
+    },
+    {
+      "id": "bc42a376-5800-4a87-bf33-872425153153",
+      "event": "dev-add-user",
+      "userId": "89252400-07fd-4f1a-acdf-30f55ff4bec1",
+      "username": "xirk",
+      "ip": "::1",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+      "timestamp": "2026-03-22T23:23:00.489Z"
+    },
+    {
+      "id": "1e36b948-e877-43cf-9b15-7d1e254d0c71",
+      "event": "dev-add-user",
+      "userId": "52261922-768f-485f-9665-3d84752c2b25",
+      "username": "asap",
+      "ip": "::1",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+      "timestamp": "2026-03-22T23:23:07.242Z"
+    },
+    {
+      "id": "27baa084-cb77-4617-93bd-2f51afaf58eb",
+      "event": "dev-add-user",
+      "userId": "f2ab4511-dce8-4bf6-88fa-edd8e6c6453b",
+      "username": "chicago",
+      "ip": "::1",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+      "timestamp": "2026-03-22T23:23:16.809Z"
+    },
+    {
+      "id": "024ee4df-27c0-433d-8e24-6ca59ef1423f",
+      "event": "dev-add-user",
+      "userId": "f5d10eb3-be7f-42eb-adec-b371d839b4d1",
+      "username": "falhey",
+      "ip": "::1",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+      "timestamp": "2026-03-22T23:23:22.866Z"
+    },
+    {
+      "id": "02649d1b-b031-4e29-9dcf-e0f4fb7bf6f7",
+      "event": "generate-codes:premium:1",
+      "userId": "e9ebac95-6701-4cdf-a1c1-9a22cbec5068",
+      "username": "dev",
+      "ip": "::1",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+      "timestamp": "2026-03-22T23:23:30.933Z"
+    },
+    {
+      "id": "e3b24fab-a756-4e72-96c4-56943d88568d",
+      "event": "generate-codes:premium:50",
+      "userId": "e9ebac95-6701-4cdf-a1c1-9a22cbec5068",
+      "username": "dev",
+      "ip": "::1",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+      "timestamp": "2026-03-22T23:23:46.876Z"
+    },
+    {
+      "id": "f8765fb6-2cb6-4474-88ee-951d2783e07f",
+      "event": "dev-add-user",
+      "userId": "1c35cc85-0bba-4201-bd7c-f0bd4d089045",
+      "username": "sharky",
+      "ip": "::1",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+      "timestamp": "2026-03-22T23:27:34.786Z"
+    },
+    {
+      "id": "c8f865d4-d52e-46f3-8c02-b8abdcedf51f",
+      "event": "login",
+      "userId": "1c35cc85-0bba-4201-bd7c-f0bd4d089045",
+      "username": "sharky",
+      "ip": "::1",
+      "userAgent": "node",
+      "timestamp": "2026-03-22T23:27:40.633Z"
+    },
+    {
+      "id": "b505c086-b6c7-4dea-a052-0ba383ee46dc",
+      "event": "login",
+      "userId": "e9ebac95-6701-4cdf-a1c1-9a22cbec5068",
+      "username": "dev",
+      "ip": "::1",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+      "timestamp": "2026-03-22T23:32:17.836Z"
+    },
+    {
+      "id": "ef85e9ef-c6ad-42c9-b161-524a3aef6d57",
+      "event": "ban-user",
+      "userId": "1c35cc85-0bba-4201-bd7c-f0bd4d089045",
+      "username": "sharky",
+      "ip": "::1",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+      "timestamp": "2026-03-22T23:33:06.332Z"
+    },
+    {
+      "id": "f6b8483d-9eb6-4324-8079-0bf95898e123",
+      "event": "dev-add-user",
+      "userId": "fec66b12-0124-4972-967e-3189d2dde0c3",
+      "username": "sharky2",
+      "ip": "::1",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+      "timestamp": "2026-03-22T23:33:19.404Z"
+    },
+    {
+      "id": "bc67e57c-f13d-482f-9988-93ca569ea9b4",
+      "event": "login",
+      "userId": "fec66b12-0124-4972-967e-3189d2dde0c3",
+      "username": "sharky2",
+      "ip": "::1",
+      "userAgent": "node",
+      "timestamp": "2026-03-22T23:33:27.125Z"
+    },
+    {
+      "id": "56c9e787-87bb-45e7-8760-1112078489b8",
+      "event": "logout",
+      "userId": "fec66b12-0124-4972-967e-3189d2dde0c3",
+      "username": "sharky2",
+      "ip": "::1",
+      "userAgent": "node",
+      "timestamp": "2026-03-22T23:35:23.464Z"
+    },
+    {
+      "id": "8e6e9352-d066-4d06-a922-0476f310e0c7",
+      "event": "login",
+      "userId": "89252400-07fd-4f1a-acdf-30f55ff4bec1",
+      "username": "xirk",
+      "ip": "::1",
+      "userAgent": "node",
+      "timestamp": "2026-03-22T23:36:29.230Z"
+    },
+    {
+      "id": "af93ba03-80c1-4a53-9f46-79e00537834e",
+      "event": "logout",
+      "userId": "89252400-07fd-4f1a-acdf-30f55ff4bec1",
+      "username": "xirk",
+      "ip": "::1",
+      "userAgent": "node",
+      "timestamp": "2026-03-22T23:37:11.773Z"
+    },
+    {
+      "id": "da9b3391-8019-422b-bd98-cacfaf129bcd",
+      "event": "login",
+      "userId": "fec66b12-0124-4972-967e-3189d2dde0c3",
+      "username": "sharky2",
+      "ip": "::1",
+      "userAgent": "node",
+      "timestamp": "2026-03-22T23:37:17.972Z"
+    },
+    {
+      "id": "20025e67-cb43-45ed-9979-dbbe1822b880",
+      "event": "login",
+      "userId": "fec66b12-0124-4972-967e-3189d2dde0c3",
+      "username": "sharky2",
+      "ip": "::1",
+      "userAgent": "node",
+      "timestamp": "2026-03-22T23:43:18.051Z"
+    },
+    {
+      "id": "6189bf95-cbbb-455f-a9d0-16fc53e7ad78",
+      "event": "login",
+      "userId": "fec66b12-0124-4972-967e-3189d2dde0c3",
+      "username": "sharky2",
+      "ip": "::1",
+      "userAgent": "node",
+      "timestamp": "2026-03-22T23:44:29.368Z"
+    },
+    {
+      "id": "c6d74964-7737-4cc9-a96a-aff55b7e0bc2",
+      "event": "login",
+      "userId": "fec66b12-0124-4972-967e-3189d2dde0c3",
+      "username": "sharky2",
+      "ip": "::1",
+      "userAgent": "node",
+      "timestamp": "2026-03-22T23:51:10.767Z"
+    },
+    {
+      "id": "ad680cfb-6e49-4647-b504-5648154c9cad",
+      "event": "logout",
+      "userId": "fec66b12-0124-4972-967e-3189d2dde0c3",
+      "username": "sharky2",
+      "ip": "::1",
+      "userAgent": "node",
+      "timestamp": "2026-03-22T23:51:49.589Z"
+    },
+    {
+      "id": "f3c60d2d-31ca-4716-9286-d81bc83e0d5a",
+      "event": "login",
+      "userId": "f5d10eb3-be7f-42eb-adec-b371d839b4d1",
+      "username": "falhey",
+      "ip": "::1",
+      "userAgent": "node",
+      "timestamp": "2026-03-22T23:52:04.094Z"
+    },
+    {
+      "id": "2f03d2a8-35b7-4e8a-a9bb-33f3d6e46216",
+      "event": "login",
+      "userId": "f5d10eb3-be7f-42eb-adec-b371d839b4d1",
+      "username": "falhey",
+      "ip": "::1",
+      "userAgent": "node",
+      "timestamp": "2026-03-22T23:57:59.709Z"
+    },
+    {
+      "id": "17368ca5-6e27-43eb-b85b-a0802037ff56",
+      "event": "logout",
+      "userId": "f5d10eb3-be7f-42eb-adec-b371d839b4d1",
+      "username": "falhey",
+      "ip": "::1",
+      "userAgent": "node",
+      "timestamp": "2026-03-22T23:58:02.755Z"
+    },
+    {
+      "id": "c6661f91-d6a5-458a-af69-495208eb4926",
+      "event": "login",
+      "userId": "f5d10eb3-be7f-42eb-adec-b371d839b4d1",
+      "username": "falhey",
+      "ip": "::1",
+      "userAgent": "node",
+      "timestamp": "2026-03-23T00:02:10.842Z"
+    },
+    {
+      "id": "df07b4d8-1dac-4170-b506-d6dfdd445ecc",
+      "event": "logout",
+      "userId": "f5d10eb3-be7f-42eb-adec-b371d839b4d1",
+      "username": "falhey",
+      "ip": "::1",
+      "userAgent": "node",
+      "timestamp": "2026-03-23T00:02:13.232Z"
+    },
+    {
+      "id": "e5a1744b-b7c6-4e54-87d2-dbb0fb3ae899",
+      "event": "login",
+      "userId": "f5d10eb3-be7f-42eb-adec-b371d839b4d1",
+      "username": "falhey",
+      "ip": "::1",
+      "userAgent": "node",
+      "timestamp": "2026-03-23T00:05:14.582Z"
+    },
+    {
+      "id": "450f647c-6f04-47ae-93e8-ee2a5d71de0c",
+      "event": "logout",
+      "userId": "f5d10eb3-be7f-42eb-adec-b371d839b4d1",
+      "username": "falhey",
+      "ip": "::1",
+      "userAgent": "node",
+      "timestamp": "2026-03-23T00:05:29.998Z"
+    },
+    {
+      "id": "5ce3b0b3-ef06-4d8a-9995-336ae41e7d6f",
+      "event": "login",
+      "userId": "e9ebac95-6701-4cdf-a1c1-9a22cbec5068",
+      "username": "dev",
+      "ip": "::1",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+      "timestamp": "2026-03-23T00:16:32.114Z"
+    },
+    {
+      "id": "7f43b04e-5ec9-48c2-8b60-088fb6f90fdc",
+      "event": "login",
+      "userId": "f5d10eb3-be7f-42eb-adec-b371d839b4d1",
+      "username": "falhey",
+      "ip": "::1",
+      "userAgent": "node",
+      "timestamp": "2026-03-23T00:26:04.218Z"
+    },
+    {
+      "id": "cde29d88-046b-46a4-9775-1f5a3567a5cd",
+      "event": "login",
+      "userId": "f5d10eb3-be7f-42eb-adec-b371d839b4d1",
+      "username": "falhey",
+      "ip": "::1",
+      "userAgent": "node",
+      "timestamp": "2026-03-23T00:34:38.173Z"
+    },
+    {
+      "id": "aaf122a4-1ed5-4780-acc4-64fcfbae6737",
+      "event": "logout",
+      "userId": "f5d10eb3-be7f-42eb-adec-b371d839b4d1",
+      "username": "falhey",
+      "ip": "::1",
+      "userAgent": "node",
+      "timestamp": "2026-03-23T00:34:43.786Z"
+    },
+    {
+      "id": "d626913d-5b62-4806-a75e-fc803fd85527",
+      "event": "login",
+      "userId": "e9ebac95-6701-4cdf-a1c1-9a22cbec5068",
+      "username": "dev",
+      "ip": "::1",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+      "timestamp": "2026-03-23T00:37:00.262Z"
+    },
+    {
+      "id": "e187624a-76ef-4f05-91da-0cadb8334915",
+      "event": "login",
+      "userId": "f5d10eb3-be7f-42eb-adec-b371d839b4d1",
+      "username": "falhey",
+      "ip": "::1",
+      "userAgent": "undici",
+      "timestamp": "2026-03-23T00:52:22.545Z"
+    },
+    {
+      "id": "9f185369-9fc5-40a6-bb1c-4617524bf564",
+      "event": "login",
+      "userId": "f5d10eb3-be7f-42eb-adec-b371d839b4d1",
+      "username": "falhey",
+      "ip": "::1",
+      "userAgent": "undici",
+      "timestamp": "2026-03-23T00:59:22.304Z"
+    },
+    {
+      "id": "1f3b8c1c-e6ee-4622-ae91-ed47e34efb94",
+      "event": "login",
+      "userId": "f5d10eb3-be7f-42eb-adec-b371d839b4d1",
+      "username": "falhey",
+      "ip": "::1",
+      "userAgent": "undici",
+      "timestamp": "2026-03-23T01:12:23.942Z"
+    },
+    {
+      "id": "6a47b39e-df36-4002-9cf1-840f691f198b",
+      "event": "login",
+      "userId": "f5d10eb3-be7f-42eb-adec-b371d839b4d1",
+      "username": "falhey",
+      "ip": "::1",
+      "userAgent": "undici",
+      "timestamp": "2026-03-23T01:17:19.097Z"
+    },
+    {
+      "id": "a906f55b-ab65-4ef8-8606-2d92486c3c26",
+      "event": "login",
+      "userId": "f5d10eb3-be7f-42eb-adec-b371d839b4d1",
+      "username": "falhey",
+      "ip": "::1",
+      "userAgent": "undici",
+      "timestamp": "2026-03-23T01:20:27.743Z"
+    },
+    {
+      "id": "38ceb756-6575-473a-9f13-79626cdb86da",
+      "event": "dev-add-user",
+      "userId": "6edd53a4-06d7-4d7d-9eed-e799c32375cf",
+      "username": "jacket",
+      "ip": "::1",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+      "timestamp": "2026-03-23T01:24:07.147Z"
+    },
+    {
+      "id": "f0f6ab64-f580-4f29-87c5-6309760de372",
+      "event": "login",
+      "userId": "e9ebac95-6701-4cdf-a1c1-9a22cbec5068",
+      "username": "dev",
+      "ip": "::1",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+      "timestamp": "2026-03-23T01:34:00.399Z"
+    },
+    {
+      "id": "3145c5aa-8f65-4b4b-b32d-1fbe114ca546",
+      "event": "login",
+      "userId": "89252400-07fd-4f1a-acdf-30f55ff4bec1",
+      "username": "xirk",
+      "ip": "99.32.60.113",
+      "userAgent": "undici",
+      "timestamp": "2026-03-23T02:02:10.982Z"
+    },
+    {
+      "id": "c9e27b79-5345-4dd6-ae54-b2e403b90875",
+      "event": "login",
+      "userId": "e9ebac95-6701-4cdf-a1c1-9a22cbec5068",
+      "username": "dev",
+      "ip": "75.86.115.204",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+      "timestamp": "2026-03-23T02:03:14.715Z"
+    },
+    {
+      "id": "53c11f85-1aa5-4cb7-92a8-cf7159ee6a6c",
+      "event": "login",
+      "userId": "6edd53a4-06d7-4d7d-9eed-e799c32375cf",
+      "username": "jacket",
+      "ip": "106.51.148.81",
+      "userAgent": "undici",
+      "timestamp": "2026-03-23T02:03:44.483Z"
+    },
+    {
+      "id": "ce3e42a5-a269-473f-bc15-1624663e748f",
+      "event": "login",
+      "userId": "89252400-07fd-4f1a-acdf-30f55ff4bec1",
+      "username": "xirk",
+      "ip": "99.32.60.113",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+      "timestamp": "2026-03-23T02:05:07.538Z"
+    },
+    {
+      "id": "0204196f-ade3-43e2-bb10-3d504c89ae1a",
+      "event": "logout",
+      "userId": "e9ebac95-6701-4cdf-a1c1-9a22cbec5068",
+      "username": "dev",
+      "ip": "75.86.115.204",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+      "timestamp": "2026-03-23T02:06:58.755Z"
+    },
+    {
+      "id": "96787ad3-ebb6-47d6-9331-f69f442e466c",
+      "event": "login",
+      "userId": "f5d10eb3-be7f-42eb-adec-b371d839b4d1",
+      "username": "falhey",
+      "ip": "75.86.115.204",
+      "userAgent": "undici",
+      "timestamp": "2026-03-23T02:09:21.836Z"
+    },
+    {
+      "id": "6e6f16f4-890f-435c-a428-026c7000f894",
+      "event": "login",
+      "userId": "6edd53a4-06d7-4d7d-9eed-e799c32375cf",
+      "username": "jacket",
+      "ip": "106.51.148.81",
+      "userAgent": "undici",
+      "timestamp": "2026-03-23T02:09:55.620Z"
+    },
+    {
+      "id": "0c450bdb-6109-4273-a20d-fd0a2ba29913",
+      "event": "login",
+      "userId": "e9ebac95-6701-4cdf-a1c1-9a22cbec5068",
+      "username": "dev",
+      "ip": "75.86.115.204",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+      "timestamp": "2026-03-23T02:15:04.596Z"
+    },
+    {
+      "id": "9ad53efe-5d63-467e-87f3-d10a0fa6b748",
+      "event": "login",
+      "userId": "f5d10eb3-be7f-42eb-adec-b371d839b4d1",
+      "username": "falhey",
+      "ip": "75.86.115.204",
+      "userAgent": "undici",
+      "timestamp": "2026-03-23T02:21:17.763Z"
+    },
+    {
+      "id": "3f6a1e23-4142-465f-9a21-660746423a37",
+      "event": "login",
+      "userId": "f5d10eb3-be7f-42eb-adec-b371d839b4d1",
+      "username": "falhey",
+      "ip": "75.86.115.204",
+      "userAgent": "undici",
+      "timestamp": "2026-03-23T02:24:00.112Z"
+    },
+    {
+      "id": "0db2c969-c474-4e3f-887d-c391e1308aca",
+      "event": "login",
+      "userId": "f5d10eb3-be7f-42eb-adec-b371d839b4d1",
+      "username": "falhey",
+      "ip": "75.86.115.204",
+      "userAgent": "undici",
+      "timestamp": "2026-03-23T02:32:53.303Z"
+    },
+    {
+      "id": "0e695067-25f8-4cd7-8db3-65d8093d5e8a",
+      "event": "login",
+      "userId": "89252400-07fd-4f1a-acdf-30f55ff4bec1",
+      "username": "xirk",
+      "ip": "99.32.60.113",
+      "userAgent": "undici",
+      "timestamp": "2026-03-23T02:37:28.659Z"
+    },
+    {
+      "id": "a394cfa2-d80f-44c8-9dbf-e0f4d8f98f9a",
+      "event": "ban-user",
+      "userId": "89252400-07fd-4f1a-acdf-30f55ff4bec1",
+      "username": "xirk",
+      "ip": "75.86.115.204",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+      "timestamp": "2026-03-23T02:37:47.090Z"
+    },
+    {
+      "id": "5b573665-c0c6-4c68-9162-4308c6cdc236",
+      "event": "unban-user",
+      "userId": "89252400-07fd-4f1a-acdf-30f55ff4bec1",
+      "username": "xirk",
+      "ip": "75.86.115.204",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+      "timestamp": "2026-03-23T02:38:05.370Z"
+    },
+    {
+      "id": "48eea7a4-3f18-4797-b031-a3b58146a5c0",
+      "event": "unban-user",
+      "userId": "89252400-07fd-4f1a-acdf-30f55ff4bec1",
+      "username": "xirk",
+      "ip": "75.86.115.204",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+      "timestamp": "2026-03-23T02:38:05.372Z"
+    },
+    {
+      "id": "7bed823e-a096-4080-b627-8bcc6d326b78",
+      "event": "login",
+      "userId": "f5d10eb3-be7f-42eb-adec-b371d839b4d1",
+      "username": "falhey",
+      "ip": "75.86.115.204",
+      "userAgent": "undici",
+      "timestamp": "2026-03-23T02:38:27.371Z"
+    },
+    {
+      "id": "3c9ca512-eb14-4a33-b8b1-f78c5f4809fc",
+      "event": "login",
+      "userId": "f5d10eb3-be7f-42eb-adec-b371d839b4d1",
+      "username": "falhey",
+      "ip": "75.86.115.204",
+      "userAgent": "undici",
+      "timestamp": "2026-03-23T02:43:04.885Z"
+    },
+    {
+      "id": "87fe4e5e-b5a8-4193-8de9-fc316f34c449",
+      "event": "login",
+      "userId": "6edd53a4-06d7-4d7d-9eed-e799c32375cf",
+      "username": "jacket",
+      "ip": "106.51.148.81",
+      "userAgent": "undici",
+      "timestamp": "2026-03-23T02:45:52.096Z"
+    },
+    {
+      "id": "5812a38d-8645-442c-860e-626a3493cdf5",
+      "event": "login",
+      "userId": "f5d10eb3-be7f-42eb-adec-b371d839b4d1",
+      "username": "falhey",
+      "ip": "75.86.115.204",
+      "userAgent": "undici",
+      "timestamp": "2026-03-23T02:49:13.934Z"
+    },
+    {
+      "id": "69b40fd2-659d-41a1-a2df-bf3ec863fa01",
+      "event": "login",
+      "userId": "6edd53a4-06d7-4d7d-9eed-e799c32375cf",
+      "username": "jacket",
+      "ip": "106.51.148.81",
+      "userAgent": "undici",
+      "timestamp": "2026-03-23T02:56:07.831Z"
+    },
+    {
+      "id": "9b097dea-bf6c-49e6-843d-dcab74c75dc9",
+      "event": "login",
+      "userId": "e9ebac95-6701-4cdf-a1c1-9a22cbec5068",
+      "username": "dev",
+      "ip": "75.86.115.204",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+      "timestamp": "2026-03-23T03:14:19.144Z"
+    },
+    {
+      "id": "c7e35fff-49cf-4cc9-97e0-6be54a7c6838",
+      "event": "login",
+      "userId": "89252400-07fd-4f1a-acdf-30f55ff4bec1",
+      "username": "xirk",
+      "ip": "99.32.60.113",
+      "userAgent": "undici",
+      "timestamp": "2026-03-23T03:15:12.779Z"
+    },
+    {
+      "id": "129b89a6-b430-46f7-80aa-b32da26f9e9d",
+      "event": "login",
+      "userId": "6edd53a4-06d7-4d7d-9eed-e799c32375cf",
+      "username": "jacket",
+      "ip": "106.51.148.81",
+      "userAgent": "undici",
+      "timestamp": "2026-03-23T03:19:38.485Z"
+    }
+  ]
+}

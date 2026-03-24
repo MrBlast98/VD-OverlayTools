@@ -1,0 +1,807 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: file: https:; media-src 'self' data: file: https:; font-src 'self' data: file: https://fonts.gstatic.com; connect-src 'self' https:; object-src 'none'; base-uri 'none'; frame-ancestors 'none'; form-action 'self'" />
+    <title>VD OverlayTools</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div id="authGate" class="auth-gate">
+      <div class="auth-card">
+        <p class="auth-kicker">ACCOUNT VERIFICATION</p>
+        <section id="authLoginSection">
+          <h2>Sign In To VD OverlayTools</h2>
+          <p class="settings-note">Login is verified through your account and role access.</p>
+          <form id="authForm" class="auth-form">
+            <label for="authServerUrl">Auth Server URL</label>
+            <input id="authServerUrl" type="url" autocomplete="url" placeholder="https://your-auth-server.example.com" readonly aria-readonly="true" title="Auth host is pinned by secure runtime policy." />
+            <label for="authUsername">Username</label>
+            <input id="authUsername" type="text" autocomplete="username" placeholder="your username" />
+            <label for="authPassword">Password</label>
+            <input id="authPassword" type="password" autocomplete="current-password" placeholder="your password" />
+            <label for="authLanguage">Languages</label>
+            <select id="authLanguage">
+              <option value="English" selected>English</option>
+              <option value="Mandarin Chinese">Mandarin Chinese</option>
+              <option value="Hindi">Hindi</option>
+              <option value="Spanish">Spanish</option>
+              <option value="French">French</option>
+              <option value="Arabic">Arabic</option>
+              <option value="Bengali">Bengali</option>
+              <option value="Portuguese">Portuguese</option>
+              <option value="Russian">Russian</option>
+              <option value="Urdu">Urdu</option>
+            </select>
+            <label class="inline-setting" for="authRememberMe">
+              <input id="authRememberMe" type="checkbox" />
+              Remember me
+            </label>
+            <button id="authLoginBtn" type="submit">Login</button>
+            <button id="showCreateAccountBtn" type="button" class="ghost">Create Account</button>
+          </form>
+          <p id="authStatus" class="settings-note settings-validation hidden"></p>
+        </section>
+
+        <section id="authRegisterSection" class="hidden">
+          <h3 class="auth-section-title">Create Account</h3>
+          <form id="authRegisterForm" class="auth-form">
+            <label for="authRegisterInviteCode">Invite Code</label>
+            <input id="authRegisterInviteCode" type="password" autocomplete="off" placeholder="enter invite code" />
+            <label for="authRegisterEmail">Email</label>
+            <input id="authRegisterEmail" type="email" autocomplete="email" placeholder="you@example.com" />
+            <label for="authRegisterUsername">Username</label>
+            <input id="authRegisterUsername" type="text" autocomplete="username" placeholder="choose a username" />
+            <label for="authRegisterPassword">Password</label>
+            <input id="authRegisterPassword" type="password" autocomplete="new-password" placeholder="create a password" />
+            <label for="authRegisterConfirmPassword">Confirm Password</label>
+            <input id="authRegisterConfirmPassword" type="password" autocomplete="new-password" placeholder="confirm password" />
+            <button id="authRegisterBtn" type="submit">Create Account</button>
+            <button id="showLoginBtn" type="button" class="ghost">Back to Login</button>
+          </form>
+          <p id="authRegisterStatus" class="settings-note settings-validation hidden"></p>
+        </section>
+      </div>
+    </div>
+
+    <header class="app-titlebar">
+      <div class="app-titlebar-left">
+        <span class="app-title">VD OverlayTools</span>
+        <span class="app-title-sep">|</span>
+        <span class="app-subtitle">v2</span>
+      </div>
+      <div class="app-titlebar-actions">
+        <button id="appMinimizeBtn" class="app-titlebar-btn" type="button" aria-label="Minimize">-</button>
+        <button id="appFullscreenBtn" class="app-titlebar-btn" type="button" aria-label="Fullscreen" title="Fullscreen">[]</button>
+        <button id="appCloseBtn" class="app-titlebar-btn app-titlebar-close" type="button" aria-label="Close">x</button>
+      </div>
+    </header>
+    <div id="appBackground"></div>
+    <div id="updateNotification" class="update-notification hidden">
+      <div class="update-content">
+        <span id="updateMessage">Update available. Restart the app to apply.</span>
+        <button id="restartButton" class="update-restart-btn">Restart Now</button>
+        <button id="dismissUpdateBtn" class="update-dismiss-btn">Later</button>
+      </div>
+    </div>
+    <div id="appContainer" class="container hidden">
+      <section class="sponsor-banner" aria-label="Sponsor">
+        <div class="sponsor-copy">
+          <p class="sponsor-kicker">Official Sponsor</p>
+          <p class="sponsor-title">Sponsored by VDL</p>
+          <p class="sponsor-subtitle">
+            Competitive Violence District Organization
+          </p>
+        </div>
+        <button id="sponsorVdlBtn" type="button" class="sponsor-btn">VDL</button>
+      </section>
+
+      <header class="topbar">
+        <h1>VD OverlayTools</h1>
+        <div class="top-actions">
+          <div class="account-wrap">
+            <span id="accountLabel" class="account-label">Not logged in</span>
+            <span id="accountRole" class="account-role">role: user</span>
+            <button id="authLogoutBtn" class="small-btn" type="button">Logout</button>
+          </div>
+          <div id="premiumUpsell" class="premium-upsell hidden">
+            <p class="premium-upsell-title">Buy Premium!</p>
+            <button id="buyPremiumBtn" type="button">Buy!</button>
+          </div>
+          <div class="category-wrap">
+            <label for="category">Category</label>
+            <select id="category">
+              <option value="4v1">4v1</option>
+              <option value="1v1" selected>1v1</option>
+              <option value="maps">Maps</option>
+              <option value="marketplace">Marketplace/Themes</option>
+              <option value="settings">Settings</option>
+            </select>
+          </div>
+        </div>
+      </header>
+
+      <div id="featureLockNotice" class="feature-lock-notice hidden"></div>
+
+      <section id="overlayWorkspace" class="app-view">
+        <section id="mapsView" class="view hidden">
+          <div class="maps-controls">
+            <div>
+              <label>Region</label>
+              <select id="regionSelect">
+                <option value="NA" selected>NA</option>
+                <option value="EU">EU</option>
+              </select>
+            </div>
+            <div>
+              <label>Maps</label>
+              <select id="mapList"></select>
+            </div>
+            <div class="preview">
+              <label>Preview</label>
+              <div id="previewWrap"><img id="previewImg" alt="preview" /></div>
+            </div>
+          </div>
+
+          <div class="overlay-controls">
+            <div class="inline-check">
+              <label><input id="mapOverlayEnabled" type="checkbox"> Map overlay enabled</label>
+            </div>
+            <div class="inline-check">
+              <label><input id="mapAutoDetectEnabled" type="checkbox"> Auto-detect current map in game</label>
+            </div>
+            <button id="closeOverlay">Close Overlay</button>
+            <div>
+              <label>Opacity</label>
+              <input id="opacity" type="range" min="0.05" max="1" step="0.01" value="0.9">
+            </div>
+            <div class="inline-check">
+              <label><input id="alwaysOnTop" type="checkbox"> Always on top</label>
+            </div>
+          </div>
+          <div class="panel compact-panel">
+            <h3>Manual Override Hotkeys</h3>
+            <div class="grid-two">
+              <div class="hotkey-card">
+                <div class="hotkey-title-row">
+                  <p>Next Map Key</p>
+                  <button class="small-btn" id="clearMapManualNextKey">Clear</button>
+                </div>
+                <button id="mapManualNextKey" class="hotkey-key">F3</button>
+              </div>
+              <div class="hotkey-card">
+                <div class="hotkey-title-row">
+                  <p>Toggle Auto-Detect Key</p>
+                  <button class="small-btn" id="clearMapToggleAutoDetectKey">Clear</button>
+                </div>
+                <button id="mapToggleAutoDetectKey" class="hotkey-key">F4</button>
+              </div>
+            </div>
+          </div>
+          <p id="mapAutoDetectStatus" class="settings-note"></p>
+        </section>
+
+        <section id="oneVOneView" class="view">
+          <div class="hero-card">
+            <div>
+              <p class="eyebrow">1V1 OVERLAY</p>
+              <h2>VD OverlayTools</h2>
+            </div>
+            <label class="switch-wrap">
+              <span id="overlayVisibleLabel">Overlay Off</span>
+              <input id="oneVOneOverlayEnabled" type="checkbox" />
+            </label>
+          </div>
+
+          <div class="panel">
+            <h3>Overlay Window</h3>
+            <div class="overlay-controls">
+              <div>
+                <label>Opacity</label>
+                <input id="oneVOneOpacity" type="range" min="0.05" max="1" step="0.01" value="0.9">
+              </div>
+              <div class="inline-check">
+                <label><input id="oneVOneAlwaysOnTop" type="checkbox"> Always on top</label>
+              </div>
+              <div class="inline-check">
+                <label><input id="oneVOneAnimationsEnabled" type="checkbox" checked> Enable animations</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel">
+            <h3>Timer Controls</h3>
+            <div class="timer-readout-row">
+              <div id="timerReadout" class="timer-readout">Player 1 (0:00) 0-0 Player 2 (0:00)</div>
+            </div>
+            <div class="timer-actions">
+              <button id="timerStartStopBtn">Start</button>
+              <button id="timerResetBtn">Reset</button>
+              <button id="swapSidesBtn">Swap Sides</button>
+            </div>
+          </div>
+
+          <div class="panel">
+            <h3>Keyboard / Mouse Hotkeys</h3>
+            <div class="grid-two">
+              <div class="hotkey-card">
+                <div class="hotkey-title-row">
+                  <p>Start/Stop/Reset Key</p>
+                  <button class="small-btn" id="clearStartStopKey">Clear</button>
+                </div>
+                <button id="startStopKey" class="hotkey-key">F1</button>
+              </div>
+              <div class="hotkey-card">
+                <div class="hotkey-title-row">
+                  <p>Swap Timer Key</p>
+                  <button class="small-btn" id="clearSwapKey">Clear</button>
+                </div>
+                <button id="swapKey" class="hotkey-key">F2</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid-two players">
+            <div class="player-card">
+              <p class="player-title">Player 1</p>
+              <label for="player1Name">Name</label>
+              <input id="player1Name" type="text" value="Player 1" />
+              <label for="player1NameColor">Name Color</label>
+              <input id="player1NameColor" type="color" value="#ffffff" />
+              <p class="score-label">Score</p>
+              <div class="score-row">
+                <button class="score-btn minus" id="p1Minus">-1</button>
+                <span class="score-value" id="p1Score">0</span>
+                <button class="score-btn plus" id="p1Plus">+1</button>
+              </div>
+            </div>
+            <div class="player-card">
+              <p class="player-title">Player 2</p>
+              <label for="player2Name">Name</label>
+              <input id="player2Name" type="text" value="Player 2" />
+              <label for="player2NameColor">Name Color</label>
+              <input id="player2NameColor" type="color" value="#ffffff" />
+              <p class="score-label">Score</p>
+              <div class="score-row">
+                <button class="score-btn minus" id="p2Minus">-1</button>
+                <span class="score-value" id="p2Score">0</span>
+                <button class="score-btn plus" id="p2Plus">+1</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel">
+            <h3>Overlay Style</h3>
+            <div class="grid-three">
+              <div>
+                <label for="timerColor">Timer Color</label>
+                <input id="timerColor" type="color" value="#ffffff" />
+              </div>
+              <div>
+                <label for="underlineColor">Underline Color</label>
+                <input id="underlineColor" type="color" value="#2f7dff" />
+              </div>
+              <div>
+                <label for="scoreColor">Score Color</label>
+                <input id="scoreColor" type="color" value="#4fc3ff" />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="fourVOneView" class="view hidden">
+          <div class="panel">
+            <h3>Tournament Setup</h3>
+            <div class="overlay-controls">
+              <div class="inline-check">
+                <label><input id="tournamentOverlayEnabled" type="checkbox"> Tournament overlay enabled</label>
+              </div>
+              <div>
+                <label>Opacity</label>
+                <input id="tournamentOpacity" type="range" min="0.05" max="1" step="0.01" value="0.9">
+              </div>
+              <div class="inline-check">
+                <label><input id="tournamentAlwaysOnTop" type="checkbox"> Always on top</label>
+              </div>
+              <button id="closeTournamentOverlay">Close Tournament Overlay</button>
+            </div>
+
+            <div class="tournament-wizard-launch">
+              <p class="settings-note">Use the guided setup to define tournament name, teams, format, first killer team, and killer rotation.</p>
+              <button id="openTournamentWizardBtn" type="button">Setup Tournament</button>
+            </div>
+
+            <div class="tournament-legacy-controls hidden" aria-hidden="true">
+              <div class="grid-two">
+                <div>
+                  <label for="teamOne">Team 1</label>
+                  <input id="teamOne" type="text" value="Serenity" />
+                </div>
+                <div>
+                  <label for="teamTwo">Team 2</label>
+                  <input id="teamTwo" type="text" value="Onliners" />
+                </div>
+              </div>
+
+              <div class="tournament-options tournament-options-single">
+                <label for="bestOf">Series</label>
+                <select id="bestOf">
+                  <option value="1">Best of 1</option>
+                  <option value="2">Best of 2</option>
+                  <option value="3" selected>Best of 3</option>
+                  <option value="4">Best of 4</option>
+                  <option value="5">Best of 5</option>
+                  <option value="7">Best of 7</option>
+                  <option value="9">Best of 9</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="panel compact-panel">
+              <h3>Live Score</h3>
+              <div class="score-row score-row-large">
+                <button class="score-btn minus" id="t1Minus">-1</button>
+                <button class="score-btn plus" id="t1Plus">+1 Team 1</button>
+                <span class="score-value" id="tournamentScoreDisplay">0-0</span>
+                <button class="score-btn plus" id="t2Plus">+1 Team 2</button>
+                <button class="score-btn minus" id="t2Minus">-1</button>
+              </div>
+            </div>
+
+            <div id="tournamentWizardModal" class="wizard-modal hidden" role="dialog" aria-modal="true" aria-label="Tournament setup wizard">
+              <div class="wizard-card">
+                <div class="wizard-header-row">
+                  <h3>Tournament Setup</h3>
+                  <button id="closeTournamentWizardBtn" type="button" class="small-btn">Close</button>
+                </div>
+
+                <div class="wizard-stepper" id="tournamentWizardStepper">
+                  <div class="wizard-step-dot is-active" data-step="1">1</div>
+                  <div class="wizard-step-dot" data-step="2">2</div>
+                  <div class="wizard-step-dot" data-step="3">3</div>
+                  <div class="wizard-step-dot" data-step="4">4</div>
+                  <div class="wizard-step-dot" data-step="5">5</div>
+                </div>
+
+                <section class="wizard-step-page" data-step="1">
+                  <h4>Tournament Info</h4>
+                  <div class="settings-row single-row">
+                    <label for="wizardTournamentName">Tournament Name</label>
+                    <input id="wizardTournamentName" type="text" maxlength="25" placeholder="e.g., DBDLeague Season X" />
+                  </div>
+                  <div class="grid-two">
+                    <div>
+                      <label for="wizardTeamOne">Your Team Name</label>
+                      <input id="wizardTeamOne" type="text" maxlength="16" placeholder="e.g., Team Alpha" />
+                    </div>
+                    <div>
+                      <label for="wizardTeamTwo">Opponent Team Name</label>
+                      <input id="wizardTeamTwo" type="text" maxlength="16" placeholder="e.g., Team Beta" />
+                    </div>
+                  </div>
+                </section>
+
+                <section class="wizard-step-page hidden" data-step="2">
+                  <h4>Match Format</h4>
+                  <div id="wizardBestOfGrid" class="wizard-format-grid">
+                    <button type="button" class="wizard-format-pill" data-format="1">Best of 1</button>
+                    <button type="button" class="wizard-format-pill" data-format="2">Best of 2</button>
+                    <button type="button" class="wizard-format-pill" data-format="3">Best of 3</button>
+                    <button type="button" class="wizard-format-pill" data-format="4">Best of 4</button>
+                    <button type="button" class="wizard-format-pill" data-format="5">Best of 5</button>
+                    <button type="button" class="wizard-format-pill" data-format="7">Best of 7</button>
+                    <button type="button" class="wizard-format-pill" data-format="9">Best of 9</button>
+                  </div>
+                </section>
+
+                <section class="wizard-step-page hidden" data-step="3">
+                  <h4>First Killer Team</h4>
+                  <p class="settings-note">Which team plays killer first in round 1?</p>
+                  <div class="wizard-team-choice-grid">
+                    <button type="button" id="wizardFirstKillerTeamOne" class="wizard-team-choice" data-team="team1"></button>
+                    <button type="button" id="wizardFirstKillerTeamTwo" class="wizard-team-choice" data-team="team2"></button>
+                  </div>
+                </section>
+
+                <section class="wizard-step-page hidden" data-step="4">
+                  <h4>Killer Rotation</h4>
+                  <p class="settings-note">Pick the killer for each round. Team assignment alternates each round based on first killer team.</p>
+                  <div id="wizardRotationList" class="wizard-rotation-list"></div>
+                </section>
+
+                <section class="wizard-step-page hidden" data-step="5">
+                  <h4>Review &amp; Confirm</h4>
+                  <div class="wizard-review-grid">
+                    <div class="wizard-review-card">
+                      <p>TOURNAMENT</p>
+                      <h5 id="wizardReviewTournamentName">-</h5>
+                    </div>
+                    <div class="wizard-review-card">
+                      <p>FORMAT</p>
+                      <h5 id="wizardReviewFormat">Best of 3</h5>
+                    </div>
+                    <div class="wizard-review-card wizard-review-wide">
+                      <p>TEAMS</p>
+                      <h5><span id="wizardReviewTeamOne">Team 1</span> vs <span id="wizardReviewTeamTwo">Team 2</span></h5>
+                    </div>
+                    <div class="wizard-review-card wizard-review-wide">
+                      <p>FIRST KILLER</p>
+                      <h5 id="wizardReviewFirstKiller">Team 1</h5>
+                    </div>
+                    <div class="wizard-review-card wizard-review-wide">
+                      <p>KILLER ROTATION</p>
+                      <div id="wizardReviewRotation" class="wizard-review-rotation"></div>
+                    </div>
+                  </div>
+                </section>
+
+                <div class="wizard-footer">
+                  <button id="wizardBackBtn" type="button" class="small-btn">Back</button>
+                  <button id="wizardCancelBtn" type="button" class="small-btn">Cancel</button>
+                  <button id="wizardNextBtn" type="button">Next</button>
+                  <button id="wizardCreateBtn" type="button" class="hidden">Create Tournament</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="panel compact-panel">
+              <h3>Score Hotkeys</h3>
+              <div class="grid-three">
+                <div class="hotkey-card">
+                  <div class="hotkey-title-row">
+                    <p>Team 1 +1 Key</p>
+                    <button class="small-btn" id="clearTeamOneScoreKey">Clear</button>
+                  </div>
+                  <button id="teamOneScoreKey" class="hotkey-key">F7</button>
+                </div>
+                <div class="hotkey-card">
+                  <div class="hotkey-title-row">
+                    <p>Team 2 +1 Key</p>
+                    <button class="small-btn" id="clearTeamTwoScoreKey">Clear</button>
+                  </div>
+                  <button id="teamTwoScoreKey" class="hotkey-key">F8</button>
+                </div>
+                <div class="hotkey-card">
+                  <div class="hotkey-title-row">
+                    <p>Reset Score Key</p>
+                    <button class="small-btn" id="clearResetScoreKey">Clear</button>
+                  </div>
+                  <button id="resetScoreKey" class="hotkey-key">F9</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel killer-winstreak-panel">
+            <h3>Killer Winstreak Overlay</h3>
+            <div class="overlay-controls">
+              <div class="inline-check">
+                <label><input id="killerWinstreakOverlayEnabled" type="checkbox"> Winstreak overlay enabled</label>
+              </div>
+              <div>
+                <label>Opacity</label>
+                <input id="killerWinstreakOpacity" type="range" min="0.05" max="1" step="0.01" value="0.9">
+              </div>
+              <div class="inline-check">
+                <label><input id="killerWinstreakAlwaysOnTop" type="checkbox"> Always on top</label>
+              </div>
+              <div class="inline-check">
+                <label><input id="killerWinstreakTransparentBg" type="checkbox"> Transparent background</label>
+              </div>
+              <button id="closeKillerWinstreakOverlay" type="button">Close Winstreak Overlay</button>
+            </div>
+            <div class="grid-two tournament-options">
+              <div>
+                <label for="killerWinstreakPick">Killer Selection</label>
+                <select id="killerWinstreakPick">
+                  <option value="Myers">Myers</option>
+                  <option value="Veil" selected>Veil</option>
+                  <option value="Jacket">Jacket</option>
+                  <option value="Hidden">Hidden</option>
+                  <option value="Jason">Jason</option>
+                  <option value="Abysswalker">Abysswalker</option>
+                  <option value="The Cure">The Cure</option>
+                </select>
+              </div>
+              <div class="streak-input-wrap">
+                <label for="killerWinstreakCurrent">Current Streak</label>
+                <input id="killerWinstreakCurrent" type="number" min="0" step="1" value="0" />
+              </div>
+            </div>
+            <div class="grid-two tournament-options">
+              <div class="streak-input-wrap">
+                <label for="killerWinstreakPersonalBest">Personal Best</label>
+                <input id="killerWinstreakPersonalBest" type="number" min="0" step="1" value="0" />
+              </div>
+              <div class="streak-input-wrap">
+                <label for="killerWinstreakWorldRecord">World Record</label>
+                <input id="killerWinstreakWorldRecord" type="number" min="0" step="1" value="0" />
+              </div>
+            </div>
+            <div class="streak-actions">
+              <button id="killerWinstreakMinus" type="button" class="small-btn">-1</button>
+              <button id="killerWinstreakPlus" type="button">Add +1</button>
+              <button id="killerWinstreakReset" type="button" class="small-btn">Reset</button>
+            </div>
+
+            <div class="panel compact-panel">
+              <h3>Winstreak Hotkeys</h3>
+              <div class="grid-three">
+                <div class="hotkey-card">
+                  <div class="hotkey-title-row">
+                    <p>Add +1 Key</p>
+                    <button class="small-btn" id="clearKillerWinstreakIncKey">Clear</button>
+                  </div>
+                  <button id="killerWinstreakIncKey" class="hotkey-key">F10</button>
+                </div>
+                <div class="hotkey-card">
+                  <div class="hotkey-title-row">
+                    <p>-1 Key</p>
+                    <button class="small-btn" id="clearKillerWinstreakDecKey">Clear</button>
+                  </div>
+                  <button id="killerWinstreakDecKey" class="hotkey-key">F11</button>
+                </div>
+                <div class="hotkey-card">
+                  <div class="hotkey-title-row">
+                    <p>Reset Key</p>
+                    <button class="small-btn" id="clearKillerWinstreakResetKey">Clear</button>
+                  </div>
+                  <button id="killerWinstreakResetKey" class="hotkey-key">F12</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="panel compact-panel">
+              <h3>Live Winstreak Card</h3>
+              <div class="tournament-preview-card">
+                <p id="killerWinstreakLiveKiller" class="killer-preview">Killer: Veil</p>
+                <p id="killerWinstreakLiveCurrent" class="killer-preview">Streak: 0</p>
+                <p id="killerWinstreakLivePersonalBest" class="killer-preview">P. Best: 0</p>
+                <p id="killerWinstreakLiveWorldRecord" class="killer-preview">WR: 0</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel tournament-preview-panel">
+            <h3>Live Tournament Card</h3>
+            <div class="tournament-preview-card">
+              <p id="seriesPreview" class="series-preview">Best of 3</p>
+              <p id="matchupPreview" class="matchup-preview">Serenity 0-0 Onliners</p>
+              <p id="killerPreview" class="killer-preview">Killer: Veil</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="marketplaceView" class="view hidden">
+          <div class="panel">
+            <h3>Marketplace/Themes</h3>
+            <p class="settings-note">Browse, favorite, publish, and apply overlay styles from other users.</p>
+            <div class="theme-marketplace-toolbar">
+              <input id="themeMarketplaceSearch" type="text" placeholder="Search by name, creator, or description" />
+              <select id="themeMarketplaceSort">
+                <option value="newest" selected>Sort: Newest</option>
+                <option value="popular">Sort: Most Used</option>
+                <option value="favorites">Sort: Most Liked</option>
+                <option value="name">Sort: Name A-Z</option>
+              </select>
+              <select id="themeMarketplaceFilter">
+                <option value="all" selected>Filter: All Animations</option>
+                <option value="float">Animation: Float</option>
+                <option value="pulse">Animation: Pulse</option>
+                <option value="none">Animation: None</option>
+              </select>
+              <button id="refreshThemeMarketplaceBtn" type="button" class="small-btn">Refresh</button>
+            </div>
+
+            <div class="theme-marketplace-tabs" role="tablist" aria-label="Marketplace tabs">
+              <button id="themeMarketplaceTabBrowse" type="button" class="theme-tab active" aria-selected="true">Browse</button>
+              <button id="themeMarketplaceTabFavorites" type="button" class="theme-tab" aria-selected="false">Favorites</button>
+              <button id="themeMarketplaceTabMine" type="button" class="theme-tab" aria-selected="false">My Themes</button>
+            </div>
+
+            <div class="theme-market-preview theme-market-preview-current" id="themeMarketplaceCurrentPreview">
+              <p class="theme-market-preview-title" id="themeMarketplaceCurrentPreviewTitle">Current Theme Preview</p>
+              <p class="theme-market-preview-subtitle" id="themeMarketplaceCurrentPreviewSubtitle">This is how your published theme card style will look.</p>
+              <div class="theme-market-preview-row">
+                <span class="theme-market-preview-chip">Player 1</span>
+                <span class="theme-market-preview-chip">Player 2</span>
+              </div>
+            </div>
+
+            <div class="theme-marketplace-publish">
+              <input id="themeMarketplaceName" type="text" maxlength="48" placeholder="Theme name (example: Neon Arena)" />
+              <textarea id="themeMarketplaceDescription" maxlength="220" rows="2" placeholder="Short description (optional)"></textarea>
+              <div class="theme-publish-scope-grid">
+                <label class="inline-setting"><input id="publishScopeOverlayTheme" type="checkbox" checked /> Overlay Theme</label>
+                <label class="inline-setting"><input id="publishScopeBackground" type="checkbox" /> Background Customization</label>
+                <label class="inline-setting"><input id="publishScopeOneVOne" type="checkbox" /> 1v1 Theme</label>
+                <label class="inline-setting"><input id="publishScopeTournament" type="checkbox" /> 4v1 Tournament Theme</label>
+                <label class="inline-setting"><input id="publishScopeMap" type="checkbox" /> Map Overlay Positions</label>
+              </div>
+              <button id="publishThemeMarketplaceBtn" type="button">Publish Current Theme</button>
+            </div>
+
+            <div class="theme-market-apply-scope">
+              <p class="settings-note">Apply Sections (choose what parts to apply from selected themes):</p>
+              <div class="theme-publish-scope-grid">
+                <label class="inline-setting"><input id="applyScopeOverlayTheme" type="checkbox" checked /> Overlay Theme</label>
+                <label class="inline-setting"><input id="applyScopeBackground" type="checkbox" checked /> Background Customization</label>
+                <label class="inline-setting"><input id="applyScopeOneVOne" type="checkbox" checked /> 1v1 Theme</label>
+                <label class="inline-setting"><input id="applyScopeTournament" type="checkbox" checked /> 4v1 Tournament Theme</label>
+                <label class="inline-setting"><input id="applyScopeMap" type="checkbox" checked /> Map Overlay Positions</label>
+              </div>
+              <p class="settings-note">Overlay Theme Targets (where the overlay style should go):</p>
+              <div class="theme-market-preset-row">
+                <button id="applyOverlayPresetAll" type="button" class="small-btn">All</button>
+                <button id="applyOverlayPresetOneVOne" type="button" class="small-btn">1v1 Only</button>
+                <button id="applyOverlayPresetTournament" type="button" class="small-btn">4v1 Only</button>
+                <button id="applyOverlayPresetWinstreak" type="button" class="small-btn">Winstreak Only</button>
+                <button id="applyOverlayPresetMap" type="button" class="small-btn">Map Only</button>
+              </div>
+              <div class="theme-publish-scope-grid">
+                <label class="inline-setting"><input id="applyOverlayTargetOneVOne" type="checkbox" checked /> 1v1 Overlay</label>
+                <label class="inline-setting"><input id="applyOverlayTargetTournament" type="checkbox" checked /> 4v1 Overlay</label>
+                <label class="inline-setting"><input id="applyOverlayTargetWinstreak" type="checkbox" checked /> Winstreak Overlay</label>
+                <label class="inline-setting"><input id="applyOverlayTargetMap" type="checkbox" checked /> Map Overlay</label>
+              </div>
+            </div>
+
+            <p id="themeMarketplaceStatus" class="settings-note settings-validation hidden"></p>
+            <div id="themeMarketplaceList" class="theme-marketplace-list"></div>
+          </div>
+        </section>
+      </section>
+
+      <section id="settingsWorkspace" class="app-view hidden">
+        <div class="panel">
+          <h3>Settings</h3>
+          <p class="settings-note">Everything here auto-saves and reloads next time you open the app.</p>
+          <div class="settings-row">
+            <button id="saveSettingsBtn">Save Now</button>
+            <button id="resetSettingsBtn">Reset to Defaults</button>
+          </div>
+        </div>
+
+          <div class="panel">
+            <h3>Music Lookup</h3>
+            <p class="settings-note">Search for songs and music videos. Pick a song for audio, then optionally pick a music video. If you skip video here, your current custom video stays active.</p>
+            <div class="settings-row single-row">
+              <label for="musicSearchInput">Search song by title or artist</label>
+              <input id="musicSearchInput" type="text" placeholder="e.g., Blinding Lights The Weeknd" />
+            </div>
+            <button id="musicSearchBtn">Search Songs</button>
+            <p class="settings-note">Searches for any version of the song (clean, explicit, remixes)</p>
+            <div id="musicSearchResults" class="music-results hidden">
+              <p class="settings-note">Click a song to select and load it:</p>
+              <div id="musicResultsList" class="music-results-list"></div>
+            </div>
+            <div id="musicSelection" class="music-selection hidden">
+              <h4 id="selectedSongTitle" style="margin: 0 0 8px; color: #4fc3ff;"></h4>
+              <p id="selectedSongArtist" class="settings-note" style="margin: 0 0 12px;"></p>
+              <div class="settings-row">
+                <button id="loadMusicVideoBtn">Find Music Video on YouTube</button>
+                <button id="playSongOnlyBtn">Use Song (Keep My Video)</button>
+                <button id="clearMusicBtn">Clear Selection</button>
+              </div>
+              <div id="videoSearchResults" class="music-results hidden">
+                <p class="settings-note">Click a video to load as visual background:</p>
+                <div id="videoResultsList" class="music-results-list"></div>
+              </div>
+              <div id="musicLoadStatus" class="settings-note settings-validation hidden"></div>
+            </div>
+            <p id="musicValidation" class="settings-note settings-validation hidden"></p>
+          </div>
+        <div class="panel">
+          <h3>Font</h3>
+          <p class="settings-note">Pick from 100 fonts or add your own custom .ttf/.otf/.woff/.woff2 font file.</p>
+          <div class="settings-row single-row">
+            <label for="appFontSelect">App Font</label>
+            <select id="appFontSelect"></select>
+          </div>
+          <div class="settings-row font-custom-row">
+            <input id="customFontPath" type="text" readonly placeholder="No custom font selected" />
+            <button id="chooseCustomFontBtn">Add Custom Font</button>
+            <button id="removeCustomFontBtn">Remove Selected Custom</button>
+          </div>
+          <p id="fontPreview" class="font-preview">The quick brown fox jumps over the lazy dog 0123456789</p>
+          <p id="fontStatus" class="settings-note settings-validation hidden"></p>
+        </div>
+
+        <div class="panel">
+          <h3>Background Media</h3>
+          <p class="settings-note">Set visual and audio separately. Visual supports `.png`, `.jpg`, `.jpeg`, `.webp`, `.gif`, `.mp4`, `.webm`, `.ogg` and must be exactly 1920x1080 (1080p) or 3840x2160 (4K) for crystal-clear output. Audio track supports `.mp3`, `.wav`, `.ogg`.</p>
+          <div class="settings-row single-row">
+            <label class="inline-setting" for="allowVisualUpscale">
+              <input id="allowVisualUpscale" type="checkbox" />
+              Allow non-1080p/4K visuals (upscaled, may look softer)
+            </label>
+          </div>
+          <div class="settings-row">
+            <input id="backgroundVisualPath" type="text" readonly placeholder="No visual selected" />
+            <button id="chooseBackgroundVisualBtn">Choose Visual</button>
+            <button id="clearBackgroundVisualBtn">Clear</button>
+          </div>
+          <div class="settings-row">
+            <input id="backgroundAudioPath" type="text" readonly placeholder="No audio selected" />
+            <button id="chooseBackgroundAudioBtn">Choose Audio</button>
+            <button id="clearBackgroundAudioBtn">Clear</button>
+          </div>
+          <div class="settings-row single-row">
+            <label class="inline-setting" for="backgroundAudioEnabled">
+              <input id="backgroundAudioEnabled" type="checkbox" />
+              Enable background audio
+            </label>
+          </div>
+          <div class="settings-row single-row">
+            <label for="backgroundVolume">Background volume (<span id="backgroundVolumeValue">60%</span>)</label>
+            <input id="backgroundVolume" type="range" min="0" max="100" step="1" value="60" />
+          </div>
+          <p id="backgroundValidation" class="settings-note settings-validation hidden"></p>
+        </div>
+
+        <div class="panel">
+          <h3>Advanced Overlay Customization (All Overlays)</h3>
+          <p class="settings-note">Customize colors, neon borders, background image/video, and animation style for map, 1v1, tournament, and winstreak overlays.</p>
+          <div class="grid-three">
+            <div>
+              <label for="overlayThemePrimaryColor">Primary Color</label>
+              <input id="overlayThemePrimaryColor" type="color" value="#4fc3ff" />
+            </div>
+            <div>
+              <label for="overlayThemeAccentColor">Accent Color</label>
+              <input id="overlayThemeAccentColor" type="color" value="#f4dd73" />
+            </div>
+            <div>
+              <label for="overlayThemeTextColor">Text Color</label>
+              <input id="overlayThemeTextColor" type="color" value="#f6fbff" />
+            </div>
+          </div>
+          <div class="grid-three">
+            <div>
+              <label for="overlayThemeCardBgColor">Card Background</label>
+              <input id="overlayThemeCardBgColor" type="color" value="#0b1220" />
+            </div>
+            <div>
+              <label for="overlayThemeNeonColor">Neon Border Color</label>
+              <input id="overlayThemeNeonColor" type="color" value="#3fd8ff" />
+            </div>
+            <div>
+              <label for="overlayThemeAnimationStyle">Animation Style</label>
+              <select id="overlayThemeAnimationStyle">
+                <option value="none">None</option>
+                <option value="float" selected>Float</option>
+                <option value="pulse">Pulse</option>
+              </select>
+            </div>
+          </div>
+          <div class="settings-row">
+            <input id="overlayThemeBackgroundPath" type="text" readonly placeholder="No overlay background selected" />
+            <button id="chooseOverlayThemeBackgroundBtn">Choose Overlay Background</button>
+            <button id="clearOverlayThemeBackgroundBtn">Clear</button>
+          </div>
+          <div class="settings-row single-row">
+            <label for="overlayThemeBackgroundOpacity">Overlay background opacity (<span id="overlayThemeBackgroundOpacityValue">35%</span>)</label>
+            <input id="overlayThemeBackgroundOpacity" type="range" min="0" max="100" step="1" value="35" />
+          </div>
+          <div class="settings-row single-row">
+            <label for="overlayThemeBorderRadius">Border radius (<span id="overlayThemeBorderRadiusValue">14px</span>)</label>
+            <input id="overlayThemeBorderRadius" type="range" min="0" max="40" step="1" value="14" />
+          </div>
+          <div class="settings-row single-row">
+            <label for="overlayThemeNeonIntensity">Neon intensity (<span id="overlayThemeNeonIntensityValue">65%</span>)</label>
+            <input id="overlayThemeNeonIntensity" type="range" min="0" max="100" step="1" value="65" />
+          </div>
+          <div class="settings-row single-row">
+            <label for="overlayThemeAnimationSpeed">Animation speed (<span id="overlayThemeAnimationSpeedValue">1.00x</span>)</label>
+            <input id="overlayThemeAnimationSpeed" type="range" min="20" max="200" step="1" value="100" />
+          </div>
+          <p id="overlayThemeValidation" class="settings-note settings-validation hidden"></p>
+        </div>
+      </section>
+    </div>
+
+    <script src="renderer.js"></script>
+  </body>
+</html>

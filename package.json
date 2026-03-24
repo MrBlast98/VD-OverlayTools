@@ -1,0 +1,93 @@
+{
+  "name": "vd-overlaytools",
+  "version": "2.0.0",
+  "description": "Map overlay app (4v1 / 1v1 / Maps) with transparent, always-on-top overlay",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MrBlast98/VD-OverlayTools.git"
+  },
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "release": "electron-builder --win portable zip",
+    "release:mac": "electron-builder --mac dmg zip --publish never -c.forceCodeSigning=false -c.mac.identity=null -c.mac.notarize=false",
+    "release:mac:unsigned": "electron-builder --mac dmg zip --publish never -c.forceCodeSigning=false -c.mac.identity=null -c.mac.notarize=false",
+    "release:mac:secure": "electron-builder --mac dmg zip --publish always",
+    "release:secure": "electron-builder --win nsis --publish always",
+    "release:ci": "electron-builder --win nsis --publish never",
+    "release:portable": "electron-builder --win portable",
+    "release:zip": "electron-builder --win zip",
+    "release:setup": "electron-builder --win nsis",
+    "host:start": "powershell -ExecutionPolicy Bypass -File scripts/start-auth-host.ps1",
+    "host:stop": "powershell -ExecutionPolicy Bypass -File scripts/stop-auth-host.ps1",
+    "host:status": "powershell -ExecutionPolicy Bypass -File scripts/status-auth-host.ps1"
+  },
+  "devDependencies": {
+    "@electron/fuses": "^1.8.0",
+    "electron": "^25.0.0",
+    "electron-builder": "^24.13.3",
+    "electron-updater": "^6.8.3",
+    "png-to-ico": "^3.0.1"
+  },
+  "build": {
+    "appId": "com.vd.overlaytools",
+    "productName": "VD OverlayTools",
+    "asar": true,
+    "forceCodeSigning": true,
+    "afterPack": "scripts/after-pack-fuses.js",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "overlay_preload.js",
+      "src/**/*",
+      "images/**/*",
+      "fonts/**/*",
+      "package.json",
+      "!web-portal/**/*",
+      "!**/*.map"
+    ],
+    "win": {
+      "target": [
+        "portable",
+        "zip",
+        "nsis"
+      ],
+      "publisherName": "VD OverlayTools",
+      "icon": "images/app-icon.ico",
+      "artifactName": "VD-OverlayTools-${version}-${arch}.${ext}"
+    },
+    "mac": {
+      "target": [
+        "dmg",
+        "zip"
+      ],
+      "category": "public.app-category.utilities",
+      "hardenedRuntime": true,
+      "gatekeeperAssess": false,
+      "notarize": true,
+      "artifactName": "VD-OverlayTools-${version}-${arch}.${ext}",
+      "entitlements": "build/entitlements.mac.plist",
+      "entitlementsInherit": "build/entitlements.mac.plist"
+    },
+    "nsis": {
+      "installerIcon": "images/app-icon.ico",
+      "uninstallerIcon": "images/app-icon.ico"
+    },
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "MrBlast98",
+        "repo": "VD-OverlayTools"
+      }
+    ]
+  },
+  "dependencies": {
+    "active-win": "^8.2.1",
+    "jimp": "^1.6.0",
+    "screenshot-desktop": "^1.15.3",
+    "tesseract.js": "^7.0.0"
+  }
+}

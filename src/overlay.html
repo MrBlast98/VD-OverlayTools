@@ -1,0 +1,1203 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: file: https:; media-src 'self' data: file: https:; font-src 'self' data: file: https:; connect-src 'self' https:; object-src 'none'; base-uri 'none'; frame-ancestors 'none'" />
+    <style>
+      :root {
+        --ov-primary: #4fc3ff;
+        --ov-accent: #f4dd73;
+        --ov-text: #f6fbff;
+        --ov-card-bg: #0b1220;
+        --ov-neon: #3fd8ff;
+        --ov-neon-intensity: 0.65;
+        --ov-radius: 14px;
+        --ov-anim-speed: 1;
+      }
+
+      html, body {
+        height: 100%;
+        margin: 0;
+        background: transparent;
+        overflow: hidden;
+        font-family: Segoe UI, Arial, sans-serif;
+      }
+
+      #frame {
+        position: relative;
+        width: 100%;
+        height: 100%;
+      }
+
+      #overlayThemeBg {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        opacity: 0;
+        display: none;
+      }
+
+      #dragBar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 24px;
+        display: none;
+        align-items: center;
+        padding: 0 8px;
+        font: 12px/1.2 Segoe UI, Arial, sans-serif;
+        color: #e6e6e6;
+        background: rgba(0, 0, 0, 0.35);
+        cursor: move;
+        user-select: none;
+        z-index: 3;
+      }
+
+      .resize-handle {
+        position: absolute;
+        display: none;
+        z-index: 4;
+        user-select: none;
+      }
+
+      #resizeSE {
+        width: 22px;
+        height: 22px;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(135deg, transparent 50%, rgba(255, 255, 255, 0.82) 50%);
+        cursor: nwse-resize;
+      }
+
+      #resizeE,
+      #resizeW {
+        top: 28px;
+        bottom: 10px;
+        width: 12px;
+      }
+
+      #resizeE {
+        right: 0;
+        cursor: ew-resize;
+      }
+
+      #resizeW {
+        left: 0;
+        cursor: ew-resize;
+      }
+
+      #resizeS,
+      #resizeN {
+        left: 10px;
+        right: 10px;
+        height: 12px;
+      }
+
+      #resizeS {
+        bottom: 0;
+        cursor: ns-resize;
+      }
+
+      #resizeN {
+        top: 24px;
+        cursor: ns-resize;
+      }
+
+      #resizeNE,
+      #resizeNW,
+      #resizeSW {
+        width: 16px;
+        height: 16px;
+      }
+
+      #resizeNE {
+        right: 0;
+        top: 24px;
+        cursor: nesw-resize;
+      }
+
+      #resizeNW {
+        left: 0;
+        top: 24px;
+        cursor: nwse-resize;
+      }
+
+      #resizeSW {
+        left: 0;
+        bottom: 0;
+        cursor: nesw-resize;
+      }
+
+      #mapView,
+      #oneView,
+      #fourView,
+      #streakView {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        height: 100%;
+      }
+
+      #mapView {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        margin: 0;
+        overflow: hidden;
+      }
+
+      #mapImg {
+        width: auto;
+        height: auto;
+        max-width: 100%;
+        max-height: 100%;
+        border-radius: var(--ov-radius);
+        user-select: none;
+        pointer-events: auto;
+      }
+
+      #oneView {
+        display: none;
+        color: #fff;
+      }
+
+      #fourView {
+        display: none;
+        color: #fff;
+      }
+
+      #streakView {
+        display: none;
+        color: #fff;
+      }
+
+      .four-card {
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: clamp(6px, 1.6vmin, 12px);
+        background: rgba(5, 8, 18, 0.18);
+        border: 1px solid rgba(117, 141, 201, 0.35);
+        border-radius: var(--ov-radius);
+        backdrop-filter: blur(2px);
+        padding: clamp(8px, 2.8vmin, 22px);
+        animation: overlayFloat 4.8s ease-in-out infinite;
+      }
+
+      .four-series {
+        margin: 0;
+        text-align: center;
+        font-size: clamp(14px, 7.2vmin, 52px);
+        line-height: 1.05;
+        font-weight: 900;
+        color: #f4dd73;
+      }
+
+      .four-match {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: stretch;
+        column-gap: clamp(10px, 2.2vmin, 22px);
+      }
+
+      .four-team-block {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: clamp(4px, 1vmin, 10px);
+      }
+
+      .four-team {
+        font-size: clamp(14px, 7.8vmin, 58px);
+        line-height: 1.05;
+        font-weight: 800;
+        text-align: center;
+        overflow-wrap: anywhere;
+      }
+
+      .four-team-score {
+        font-size: clamp(16px, 8.8vmin, 64px);
+        line-height: 1;
+        font-weight: 900;
+        text-align: center;
+        min-width: clamp(34px, 9vmin, 120px);
+        white-space: nowrap;
+        transition: transform 180ms ease, text-shadow 180ms ease;
+      }
+
+      .four-killer {
+        margin: 0;
+        text-align: center;
+        font-size: clamp(12px, 5.8vmin, 42px);
+        line-height: 1.08;
+        font-weight: 700;
+        color: #84efc9;
+        overflow-wrap: anywhere;
+      }
+
+      .streak-card {
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: stretch;
+        gap: clamp(8px, 2.1vmin, 16px);
+        background:
+          radial-gradient(circle at 20% 0%, rgba(228, 67, 67, 0.18), transparent 34%),
+          linear-gradient(120deg, rgba(13, 10, 17, 0.86), rgba(7, 11, 20, 0.8));
+        border: 1px solid rgba(236, 244, 255, 0.2);
+        border-radius: var(--ov-radius);
+        backdrop-filter: blur(2px);
+        box-shadow:
+          0 16px 30px rgba(0, 0, 0, 0.35),
+          inset 0 0 28px rgba(139, 187, 255, 0.1);
+        padding: clamp(12px, 3vmin, 24px);
+      }
+
+      .streak-killer {
+        margin: 0;
+        text-align: left;
+        font-size: clamp(18px, 7vmin, 54px);
+        line-height: 1.05;
+        font-weight: 900;
+        color: #f1f6ff;
+        text-shadow: 0 8px 18px rgba(0, 0, 0, 0.45);
+        overflow-wrap: anywhere;
+      }
+
+      .streak-stats {
+        display: grid;
+        gap: clamp(8px, 1.8vmin, 12px);
+        margin-top: clamp(4px, 1vmin, 10px);
+      }
+
+      .streak-stat {
+        display: block;
+      }
+
+      .streak-lane {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-radius: 10px;
+        padding: clamp(5px, 1.4vmin, 10px) clamp(10px, 2.2vmin, 16px);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        background: linear-gradient(90deg, rgba(82, 43, 153, 0.62), rgba(86, 112, 255, 0.34));
+        box-shadow: inset 0 0 16px rgba(0, 0, 0, 0.26), 0 8px 18px rgba(0, 0, 0, 0.25);
+      }
+
+      .streak-lane.best {
+        background: linear-gradient(90deg, rgba(8, 112, 38, 0.62), rgba(24, 172, 97, 0.34));
+      }
+
+      .streak-lane.world {
+        background: linear-gradient(90deg, rgba(15, 74, 132, 0.66), rgba(44, 146, 214, 0.36));
+      }
+
+      .streak-lane.world.wr-hit {
+        border-color: rgba(153, 220, 255, 0.95);
+        box-shadow:
+          0 0 24px rgba(97, 197, 255, 0.62),
+          inset 0 0 20px rgba(95, 196, 255, 0.28);
+      }
+
+      .streak-label {
+        font-size: clamp(11px, 2.5vmin, 19px);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        font-weight: 800;
+      }
+
+      .streak-value {
+        font-size: clamp(12px, 2.8vmin, 22px);
+        font-weight: 900;
+        color: #f6fbff;
+        text-shadow: 0 0 14px rgba(255, 255, 255, 0.26);
+        padding-left: 10px;
+        overflow-wrap: anywhere;
+      }
+
+      .streak-card.transparent {
+        background: transparent;
+        border-color: transparent;
+        box-shadow: none;
+        backdrop-filter: none;
+      }
+
+      .one-card {
+        height: 100%;
+        background: rgba(0, 0, 0, 0.65);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: var(--ov-radius);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      body.theme-anim-float .one-card,
+      body.theme-anim-float .four-card,
+      body.theme-anim-float .streak-card,
+      body.theme-anim-float #mapImg {
+        animation: overlayThemeFloat calc(4.8s / var(--ov-anim-speed)) ease-in-out infinite;
+      }
+
+      body.theme-anim-pulse .one-card,
+      body.theme-anim-pulse .four-card,
+      body.theme-anim-pulse .streak-card,
+      body.theme-anim-pulse #mapImg {
+        animation: overlayThemePulse calc(2.4s / var(--ov-anim-speed)) ease-in-out infinite;
+      }
+
+      body.theme-anim-none .one-card,
+      body.theme-anim-none .four-card,
+      body.theme-anim-none .streak-card,
+      body.theme-anim-none #mapImg {
+        animation: none !important;
+      }
+
+      .one-header {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        align-items: center;
+        min-height: 88px;
+        width: 100%;
+        background: rgba(14, 26, 56, 0.95);
+      }
+
+      .name {
+        text-align: center;
+        font-size: 30px;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        transition: transform 180ms ease;
+      }
+
+      .time-inline {
+        margin-left: 6px;
+        font-weight: 800;
+      }
+
+      .score {
+        font-size: 44px;
+        font-weight: 800;
+        min-width: 160px;
+        text-align: center;
+        transition: transform 180ms ease, text-shadow 180ms ease;
+      }
+
+      #nameRowUnderline {
+        position: absolute;
+        left: 8%;
+        right: 8%;
+        height: 6px;
+        bottom: calc(50% - 40px);
+        border-radius: 999px;
+        background: #2f7dff;
+        box-shadow: 0 0 12px rgba(77, 142, 255, 0.45);
+        animation: underlineGlow 2.8s ease-in-out infinite;
+      }
+
+      .mode-enter {
+        animation: modeEnter 260ms ease-out;
+      }
+
+      .pulse-hit {
+        animation: scoreHit 280ms ease-out;
+      }
+
+      .onevone-no-anim .one-card,
+      .onevone-no-anim #nameRowUnderline {
+        animation: none !important;
+      }
+
+      .onevone-no-anim .name,
+      .onevone-no-anim .score {
+        transition: none !important;
+      }
+
+      @keyframes modeEnter {
+        0% {
+          opacity: 0;
+          transform: translateY(10px) scale(0.985);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+
+      @keyframes scoreHit {
+        0% {
+          transform: scale(1);
+          text-shadow: 0 0 0 rgba(122, 195, 255, 0);
+        }
+        50% {
+          transform: scale(1.12);
+          text-shadow: 0 0 18px rgba(122, 195, 255, 0.72);
+        }
+        100% {
+          transform: scale(1);
+          text-shadow: 0 0 0 rgba(122, 195, 255, 0);
+        }
+      }
+
+      @keyframes overlayFloat {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-3px);
+        }
+      }
+
+      @keyframes underlineGlow {
+        0%,
+        100% {
+          box-shadow: 0 0 10px rgba(77, 142, 255, 0.36);
+        }
+        50% {
+          box-shadow: 0 0 18px rgba(106, 167, 255, 0.64);
+        }
+      }
+
+      @keyframes overlayThemeFloat {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-4px);
+        }
+      }
+
+      @keyframes overlayThemePulse {
+        0%,
+        100% {
+          filter: brightness(1);
+        }
+        50% {
+          filter: brightness(1.14);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="frame">
+      <div id="dragBar">Drag overlay (Always on top OFF)</div>
+      <div id="overlayThemeBg"></div>
+
+      <section id="mapView">
+        <img id="mapImg" src="" alt="overlay image" />
+      </section>
+
+      <section id="oneView">
+        <div class="one-card">
+          <div class="one-header">
+            <div class="name"><span id="p1NameText">Player 1</span><span id="p1TimeText" class="time-inline">(0:00)</span></div>
+            <div id="score" class="score">0 - 0</div>
+            <div class="name"><span id="p2NameText">Player 2</span><span id="p2TimeText" class="time-inline">(0:00)</span></div>
+          </div>
+          <div id="nameRowUnderline"></div>
+        </div>
+      </section>
+
+      <section id="fourView">
+        <div class="four-card">
+          <p id="fourSeries" class="four-series">BEST OF 3</p>
+          <div class="four-match">
+            <div class="four-team-block">
+              <div id="fourTeamOne" class="four-team">TEAM 1</div>
+              <div id="fourTeamOneScore" class="four-team-score">0</div>
+            </div>
+            <div class="four-team-block">
+              <div id="fourTeamTwo" class="four-team">TEAM 2</div>
+              <div id="fourTeamTwoScore" class="four-team-score">0</div>
+            </div>
+          </div>
+          <p id="fourKiller" class="four-killer">Killer: Abyss</p>
+        </div>
+      </section>
+
+      <section id="streakView">
+        <div class="streak-card">
+          <p id="streakKiller" class="streak-killer">Veil</p>
+          <div class="streak-stats">
+            <div class="streak-stat">
+              <div class="streak-lane">
+                <span id="streakLabelCurrent" class="streak-label">Streak</span>
+                <span id="streakCurrent" class="streak-value">0</span>
+              </div>
+            </div>
+            <div class="streak-stat">
+              <div class="streak-lane best">
+                <span id="streakLabelBest" class="streak-label">P. Best</span>
+                <span id="streakBest" class="streak-value">--</span>
+              </div>
+            </div>
+            <div class="streak-stat">
+              <div id="streakWorldLane" class="streak-lane world">
+                <span id="streakLabelWorld" class="streak-label">WR</span>
+                <span id="streakWorld" class="streak-value">--</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div id="resizeN" class="resize-handle" aria-label="Resize overlay north"></div>
+      <div id="resizeS" class="resize-handle" aria-label="Resize overlay south"></div>
+      <div id="resizeE" class="resize-handle" aria-label="Resize overlay east"></div>
+      <div id="resizeW" class="resize-handle" aria-label="Resize overlay west"></div>
+      <div id="resizeNE" class="resize-handle" aria-label="Resize overlay northeast"></div>
+      <div id="resizeNW" class="resize-handle" aria-label="Resize overlay northwest"></div>
+      <div id="resizeSE" class="resize-handle" aria-label="Resize overlay southeast"></div>
+      <div id="resizeSW" class="resize-handle" aria-label="Resize overlay southwest"></div>
+    </div>
+
+    <script>
+      const mapView = document.getElementById('mapView');
+      const mapImg = document.getElementById('mapImg');
+      const overlayThemeBg = document.getElementById('overlayThemeBg');
+      const oneView = document.getElementById('oneView');
+      const fourView = document.getElementById('fourView');
+      const streakView = document.getElementById('streakView');
+      const oneCard = document.querySelector('.one-card');
+      const fourCard = document.querySelector('.four-card');
+      const p1NameText = document.getElementById('p1NameText');
+      const p2NameText = document.getElementById('p2NameText');
+      const p1TimeText = document.getElementById('p1TimeText');
+      const p2TimeText = document.getElementById('p2TimeText');
+      const score = document.getElementById('score');
+      const nameRowUnderline = document.getElementById('nameRowUnderline');
+      const fourSeries = document.getElementById('fourSeries');
+      const fourTeamOne = document.getElementById('fourTeamOne');
+      const fourTeamTwo = document.getElementById('fourTeamTwo');
+      const fourTeamOneScore = document.getElementById('fourTeamOneScore');
+      const fourTeamTwoScore = document.getElementById('fourTeamTwoScore');
+      const fourKiller = document.getElementById('fourKiller');
+      const streakCard = document.querySelector('.streak-card');
+      const streakLabelCurrent = document.getElementById('streakLabelCurrent');
+      const streakLabelBest = document.getElementById('streakLabelBest');
+      const streakLabelWorld = document.getElementById('streakLabelWorld');
+      const streakWorldLane = document.getElementById('streakWorldLane');
+      const streakKiller = document.getElementById('streakKiller');
+      const streakCurrent = document.getElementById('streakCurrent');
+      const streakBest = document.getElementById('streakBest');
+      const streakWorld = document.getElementById('streakWorld');
+
+      let overlayLanguage = 'English';
+
+      const OVERLAY_I18N = {
+        'BEST OF': {
+          'Mandarin Chinese': 'BO',
+          Hindi: 'बेस्ट ऑफ',
+          Spanish: 'Mejor de',
+          French: 'Best of',
+          Arabic: 'افضل من',
+          Bengali: 'বেস্ট অফ',
+          Portuguese: 'Melhor de',
+          Russian: 'До',
+          Urdu: 'بیسٹ آف'
+        },
+        Killer: {
+          'Mandarin Chinese': '杀手',
+          Hindi: 'किलर',
+          Spanish: 'Asesino',
+          French: 'Tueur',
+          Arabic: 'القاتل',
+          Bengali: 'কিলার',
+          Portuguese: 'Assassino',
+          Russian: 'Убийца',
+          Urdu: 'کلر'
+        },
+        Streak: {
+          'Mandarin Chinese': '连胜',
+          Hindi: 'स्ट्रीक',
+          Spanish: 'Racha',
+          French: 'Serie',
+          Arabic: 'السلسلة',
+          Bengali: 'স্ট্রিক',
+          Portuguese: 'Sequencia',
+          Russian: 'Серия',
+          Urdu: 'اسٹریک'
+        },
+        'P. Best': {
+          'Mandarin Chinese': '个人最佳',
+          Hindi: 'व्य. सर्वश्रेष्ठ',
+          Spanish: 'Mejor pers.',
+          French: 'Meilleur pers.',
+          Arabic: 'افضل شخصي',
+          Bengali: 'ব্য. সেরা',
+          Portuguese: 'Melhor pes.',
+          Russian: 'Лич. рекорд',
+          Urdu: 'ذاتی بہترین'
+        },
+        WR: {
+          'Mandarin Chinese': '世界纪录',
+          Hindi: 'विश्व रिकॉर्ड',
+          Spanish: 'RM',
+          French: 'RM',
+          Arabic: 'رقم عالمي',
+          Bengali: 'বিশ্ব রেকর্ড',
+          Portuguese: 'RM',
+          Russian: 'МР',
+          Urdu: 'ورلڈ ریکارڈ'
+        }
+      };
+
+      function tr(key) {
+        const text = String(key || '');
+        if (!text) return text;
+        if (overlayLanguage === 'English') return text;
+        const map = OVERLAY_I18N[text];
+        if (!map) return text;
+        return map[overlayLanguage] || text;
+      }
+
+      function applyOverlayLanguage() {
+        if (streakLabelCurrent) streakLabelCurrent.textContent = tr('Streak');
+        if (streakLabelBest) streakLabelBest.textContent = tr('P. Best');
+        if (streakLabelWorld) streakLabelWorld.textContent = tr('WR');
+      }
+
+      const dragBar = document.getElementById('dragBar');
+      const resizeHandles = [
+        document.getElementById('resizeN'),
+        document.getElementById('resizeS'),
+        document.getElementById('resizeE'),
+        document.getElementById('resizeW'),
+        document.getElementById('resizeNE'),
+        document.getElementById('resizeNW'),
+        document.getElementById('resizeSE'),
+        document.getElementById('resizeSW')
+      ].filter(Boolean);
+
+      let alwaysOnTop = true;
+      let lastOneScore = '0 - 0';
+      let lastFourTeamOneScore = '0';
+      let lastFourTeamTwoScore = '0';
+      let currentMode = 'map';
+      let lastAutoFitSrc = '';
+      let autoFitEnabled = true;
+      let oneVOneAnimationsEnabled = true;
+      let currentTheme = {
+        primaryColor: '#4fc3ff',
+        accentColor: '#f4dd73',
+        textColor: '#f6fbff',
+        cardBgColor: '#0b1220',
+        neonColor: '#3fd8ff',
+        neonIntensity: 0.65,
+        borderRadius: 14,
+        animationStyle: 'float',
+        animationSpeed: 1,
+        backgroundPath: '',
+        backgroundOpacity: 0.35
+      };
+
+      function clampNumber(value, min, max, fallback) {
+        const num = Number(value);
+        if (!Number.isFinite(num)) return fallback;
+        if (num < min) return min;
+        if (num > max) return max;
+        return num;
+      }
+
+      function hexToRgb(hex) {
+        const raw = String(hex || '').trim().replace('#', '');
+        const value = raw.length === 3
+          ? raw.split('').map((ch) => ch + ch).join('')
+          : raw;
+        if (!/^[0-9a-fA-F]{6}$/.test(value)) return { r: 79, g: 195, b: 255 };
+        return {
+          r: parseInt(value.slice(0, 2), 16),
+          g: parseInt(value.slice(2, 4), 16),
+          b: parseInt(value.slice(4, 6), 16)
+        };
+      }
+
+      function rgba(hex, alpha) {
+        const rgb = hexToRgb(hex);
+        const safeAlpha = clampNumber(alpha, 0, 1, 1);
+        return `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${safeAlpha})`;
+      }
+
+      function isWebUrl(value) {
+        return /^https?:\/\//i.test(String(value || '').trim());
+      }
+
+      function toMediaUrl(rawPath) {
+        const value = String(rawPath || '').trim();
+        if (!value) return '';
+        if (isWebUrl(value)) return value;
+
+        if (/^[a-zA-Z]:\\/.test(value)) {
+          return encodeURI(`file:///${value.replace(/\\/g, '/')}`);
+        }
+
+        if (/^\\\\/.test(value)) {
+          return encodeURI(`file:${value.replace(/\\/g, '/')}`);
+        }
+
+        try {
+          return encodeURI(new URL(value, window.location.href).href);
+        } catch {
+          return value;
+        }
+      }
+
+      function applyOverlayTheme(theme) {
+        if (!theme || typeof theme !== 'object') return;
+
+        currentTheme = {
+          ...currentTheme,
+          ...theme
+        };
+
+        const neonIntensity = clampNumber(currentTheme.neonIntensity, 0, 1, 0.65);
+        const borderRadius = clampNumber(currentTheme.borderRadius, 0, 40, 14);
+        const backgroundOpacity = clampNumber(currentTheme.backgroundOpacity, 0, 1, 0.35);
+        const animationSpeed = clampNumber(currentTheme.animationSpeed, 0.2, 2, 1);
+        const animationStyle = ['none', 'float', 'pulse'].includes(String(currentTheme.animationStyle))
+          ? String(currentTheme.animationStyle)
+          : 'float';
+
+        document.documentElement.style.setProperty('--ov-primary', currentTheme.primaryColor || '#4fc3ff');
+        document.documentElement.style.setProperty('--ov-accent', currentTheme.accentColor || '#f4dd73');
+        document.documentElement.style.setProperty('--ov-text', currentTheme.textColor || '#f6fbff');
+        document.documentElement.style.setProperty('--ov-card-bg', currentTheme.cardBgColor || '#0b1220');
+        document.documentElement.style.setProperty('--ov-neon', currentTheme.neonColor || '#3fd8ff');
+        document.documentElement.style.setProperty('--ov-neon-intensity', String(neonIntensity));
+        document.documentElement.style.setProperty('--ov-radius', `${Math.round(borderRadius)}px`);
+        document.documentElement.style.setProperty('--ov-anim-speed', String(animationSpeed));
+
+        document.body.classList.remove('theme-anim-none', 'theme-anim-float', 'theme-anim-pulse');
+        document.body.classList.add(`theme-anim-${animationStyle}`);
+
+        const neonColor = currentTheme.neonColor || '#3fd8ff';
+        const cardBg = currentTheme.cardBgColor || '#0b1220';
+        const textColor = currentTheme.textColor || '#f6fbff';
+
+        const neonGlow = `0 0 ${Math.round(16 + (neonIntensity * 28))}px ${rgba(neonColor, 0.2 + (neonIntensity * 0.45))}`;
+        const neonInset = `inset 0 0 ${Math.round(8 + (neonIntensity * 14))}px ${rgba(neonColor, 0.14 + (neonIntensity * 0.28))}`;
+
+        [oneCard, fourCard, streakCard].forEach((card) => {
+          if (!card) return;
+          const isTransparentStreak = card === streakCard && card.classList.contains('transparent');
+          card.style.borderColor = rgba(neonColor, 0.35 + (neonIntensity * 0.45));
+          card.style.boxShadow = isTransparentStreak ? 'none' : `${neonGlow}, ${neonInset}`;
+          if (!isTransparentStreak) {
+            card.style.background = `linear-gradient(135deg, ${rgba(cardBg, 0.86)}, ${rgba(currentTheme.primaryColor || '#4fc3ff', 0.22)})`;
+          }
+        });
+
+        if (mapImg) {
+          mapImg.style.border = `1px solid ${rgba(neonColor, 0.5 + (neonIntensity * 0.4))}`;
+          mapImg.style.boxShadow = `${neonGlow}, ${neonInset}`;
+        }
+
+        [fourSeries, fourKiller, streakKiller, streakCurrent, streakBest, streakWorld, score, p1NameText, p2NameText, p1TimeText, p2TimeText]
+          .forEach((el) => {
+            if (!el) return;
+            if (el === fourSeries) {
+              el.style.color = currentTheme.accentColor || textColor;
+              return;
+            }
+            el.style.color = textColor;
+          });
+
+        const backgroundUrl = toMediaUrl(currentTheme.backgroundPath);
+        if (overlayThemeBg) {
+          if (backgroundUrl) {
+            overlayThemeBg.style.display = 'block';
+            overlayThemeBg.style.backgroundImage = `url("${backgroundUrl}")`;
+            overlayThemeBg.style.opacity = String(backgroundOpacity);
+          } else {
+            overlayThemeBg.style.display = 'none';
+            overlayThemeBg.style.backgroundImage = 'none';
+            overlayThemeBg.style.opacity = '0';
+          }
+        }
+      }
+
+      function pulseElement(el, shouldAnimate = true) {
+        if (!el) return;
+        if (!shouldAnimate) return;
+        el.classList.remove('pulse-hit');
+        void el.offsetWidth;
+        el.classList.add('pulse-hit');
+      }
+
+      function animateModeEnter(target, shouldAnimate = true) {
+        if (!target) return;
+        if (!shouldAnimate) return;
+        target.classList.remove('mode-enter');
+        void target.offsetWidth;
+        target.classList.add('mode-enter');
+      }
+
+      function setOneVOneAnimationsEnabled(enabled) {
+        oneVOneAnimationsEnabled = !!enabled;
+        oneView.classList.toggle('onevone-no-anim', !oneVOneAnimationsEnabled);
+      }
+
+      function setEditControlsVisible(visible) {
+        dragBar.style.display = visible ? 'flex' : 'none';
+        resizeHandles.forEach((handle) => {
+          handle.style.display = visible ? 'block' : 'none';
+        });
+      }
+
+      function setMode(mode) {
+        const oneMode = mode === '1v1';
+        const fourMode = mode === '4v1';
+        const streakMode = mode === 'winstreak';
+        currentMode = oneMode ? '1v1' : (fourMode ? '4v1' : (streakMode ? 'winstreak' : 'map'));
+        oneView.style.display = oneMode ? 'block' : 'none';
+        fourView.style.display = fourMode ? 'block' : 'none';
+        streakView.style.display = streakMode ? 'flex' : 'none';
+        mapView.style.display = !oneMode && !fourMode && !streakMode ? 'flex' : 'none';
+
+        if (oneMode) animateModeEnter(oneView, oneVOneAnimationsEnabled);
+        if (fourMode) animateModeEnter(fourView);
+        if (streakMode) animateModeEnter(streakView);
+        if (!oneMode && !fourMode && !streakMode) animateModeEnter(mapView);
+      }
+
+      applyOverlayTheme(currentTheme);
+
+      function fitSizeToScreen(width, height) {
+        const minWidth = 120;
+        const minHeight = 80;
+        const maxWidth = Math.max(minWidth, Math.floor(window.screen.availWidth * 0.9));
+        const maxHeight = Math.max(minHeight, Math.floor(window.screen.availHeight * 0.9));
+
+        let w = Math.max(minWidth, Math.round(width));
+        let h = Math.max(minHeight, Math.round(height));
+        const ratio = h > 0 ? w / h : 1;
+
+        if (w > maxWidth) {
+          w = maxWidth;
+          h = Math.round(w / ratio);
+        }
+        if (h > maxHeight) {
+          h = maxHeight;
+          w = Math.round(h * ratio);
+        }
+
+        return {
+          width: Math.max(minWidth, w),
+          height: Math.max(minHeight, h)
+        };
+      }
+
+      async function setOverlaySize(width, height, anchor = 'se') {
+        const bounds = await window.overlayApi.getBounds();
+        if (!bounds) return;
+
+        const safe = fitSizeToScreen(width, height);
+        const dx = safe.width - bounds.width;
+        const dy = safe.height - bounds.height;
+
+        let x = bounds.x;
+        let y = bounds.y;
+
+        if (anchor.includes('w')) x = bounds.x - dx;
+        if (anchor.includes('n')) y = bounds.y - dy;
+
+        window.overlayApi.setBounds({
+          x,
+          y,
+          width: safe.width,
+          height: safe.height
+        });
+      }
+
+      async function fitMapToTrueSize() {
+        if (currentMode !== 'map') return;
+        const naturalWidth = mapImg.naturalWidth || 0;
+        const naturalHeight = mapImg.naturalHeight || 0;
+        if (!naturalWidth || !naturalHeight) return;
+        await setOverlaySize(naturalWidth, naturalHeight, 'se');
+      }
+
+      mapImg.addEventListener('load', async () => {
+        if (currentMode !== 'map') return;
+        if (!mapImg.src || mapImg.src === lastAutoFitSrc) return;
+        if (!autoFitEnabled) return;
+        lastAutoFitSrc = mapImg.src;
+        await fitMapToTrueSize();
+      });
+
+      function applyOneVOne(data) {
+        if (!data) return;
+        const p1Time = data.player1TimeText || '0:00';
+        const p2Time = data.player2TimeText || '0:00';
+        p1NameText.textContent = data.player1Name || 'Player 1';
+        p2NameText.textContent = data.player2Name || 'Player 2';
+        p1TimeText.textContent = `(${p1Time})`;
+        p2TimeText.textContent = `(${p2Time})`;
+        p1NameText.style.color = data.player1NameColor || '#ffffff';
+        p2NameText.style.color = data.player2NameColor || '#ffffff';
+        p1TimeText.style.color = data.timerColor || '#ffffff';
+        p2TimeText.style.color = data.timerColor || '#ffffff';
+
+        const s1 = Number.isFinite(data.player1Score) ? data.player1Score : 0;
+        const s2 = Number.isFinite(data.player2Score) ? data.player2Score : 0;
+        const nextScore = `${s1} - ${s2}`;
+        score.textContent = nextScore;
+        score.style.color = data.scoreColor || '#4fc3ff';
+        nameRowUnderline.style.background = data.underlineColor || '#2f7dff';
+
+        if (nextScore !== lastOneScore) {
+          pulseElement(score, oneVOneAnimationsEnabled);
+        }
+        lastOneScore = nextScore;
+      }
+
+      function applyTournament(data) {
+        if (!data) return;
+        const team1 = data.teamOne || 'Team 1';
+        const team2 = data.teamTwo || 'Team 2';
+        const s1 = Number.isFinite(data.teamOneScore) ? data.teamOneScore : 0;
+        const s2 = Number.isFinite(data.teamTwoScore) ? data.teamTwoScore : 0;
+        const bestOf = data.bestOf || '3';
+        const killer = data.killer || 'Abyss';
+
+        fourSeries.textContent = `${tr('BEST OF')} ${bestOf}`;
+        fourTeamOne.textContent = team1.toUpperCase();
+        fourTeamTwo.textContent = team2.toUpperCase();
+        const nextTeamOneScore = String(s1);
+        const nextTeamTwoScore = String(s2);
+        fourTeamOneScore.textContent = nextTeamOneScore;
+        fourTeamTwoScore.textContent = nextTeamTwoScore;
+        fourKiller.textContent = `${tr('Killer')}: ${killer}`;
+
+        if (nextTeamOneScore !== lastFourTeamOneScore) {
+          pulseElement(fourTeamOneScore);
+        }
+        if (nextTeamTwoScore !== lastFourTeamTwoScore) {
+          pulseElement(fourTeamTwoScore);
+        }
+        lastFourTeamOneScore = nextTeamOneScore;
+        lastFourTeamTwoScore = nextTeamTwoScore;
+      }
+
+      function applyWinstreak(data) {
+        if (!data) return;
+        const killer = data.killer || 'Veil';
+        const streak = String(data.currentStreak !== undefined ? data.currentStreak : (data.name !== undefined ? data.name : '0')).trim() || '0';
+        const personalBest = String(data.personalBest !== undefined ? data.personalBest : '--');
+        const worldRecord = String(data.worldRecord !== undefined ? data.worldRecord : '--');
+        const transparentBackground = !!data.transparentBackground;
+        streakKiller.textContent = killer;
+        streakCurrent.textContent = streak;
+        streakBest.textContent = personalBest;
+        streakWorld.textContent = worldRecord;
+        applyOverlayLanguage();
+
+        const streakNum = Number.parseInt(String(streak), 10);
+        const wrNum = Number.parseInt(String(worldRecord), 10);
+        const shouldHighlightWr = Number.isFinite(streakNum) && Number.isFinite(wrNum) && streakNum >= wrNum;
+        if (streakWorldLane) {
+          streakWorldLane.classList.toggle('wr-hit', shouldHighlightWr);
+        }
+
+        if (streakCard) {
+          streakCard.classList.toggle('transparent', transparentBackground);
+        }
+
+        applyOverlayTheme(currentTheme);
+      }
+
+      window.overlayApi.onUpdate((opts) => {
+        if (!opts) return;
+
+        if (opts.theme) {
+          applyOverlayTheme(opts.theme);
+        }
+
+        if (opts.language) {
+          overlayLanguage = String(opts.language);
+          applyOverlayLanguage();
+        }
+
+        if (opts.autoFit !== undefined) {
+          autoFitEnabled = !!opts.autoFit;
+        }
+
+        if (opts.mode) setMode(opts.mode);
+
+        if (opts.fontFamily) {
+          document.body.style.fontFamily = `"${opts.fontFamily}", "Segoe UI", Arial, sans-serif`;
+        }
+
+        if (opts.image) {
+          mapImg.src = opts.image;
+        }
+
+        if (opts.opacity !== undefined) {
+          document.body.style.opacity = opts.opacity;
+        }
+
+        if (opts.alwaysOnTop !== undefined) {
+          alwaysOnTop = !!opts.alwaysOnTop;
+          setEditControlsVisible(!alwaysOnTop);
+        }
+
+        if (opts.onevone) {
+          if (opts.onevone.animationsEnabled !== undefined) {
+            setOneVOneAnimationsEnabled(!!opts.onevone.animationsEnabled);
+          }
+          applyOneVOne(opts.onevone);
+        }
+
+        if (opts.tournament) {
+          applyTournament(opts.tournament);
+        }
+
+        if (opts.winstreak) {
+          applyWinstreak(opts.winstreak);
+        }
+      });
+
+      dragBar.addEventListener('mousedown', async (event) => {
+        if (alwaysOnTop) return;
+        event.preventDefault();
+        event.stopPropagation();
+
+        const startBounds = await window.overlayApi.getBounds();
+        if (!startBounds) return;
+
+        const startX = event.screenX;
+        const startY = event.screenY;
+
+        function onMove(moveEvent) {
+          const dx = moveEvent.screenX - startX;
+          const dy = moveEvent.screenY - startY;
+          window.overlayApi.setBounds({
+            x: startBounds.x + dx,
+            y: startBounds.y + dy
+          });
+        }
+
+        function onUp() {
+          window.removeEventListener('mousemove', onMove);
+          window.removeEventListener('mouseup', onUp);
+        }
+
+        window.addEventListener('mousemove', onMove);
+        window.addEventListener('mouseup', onUp);
+      });
+
+      function bindResize(handleId, horizontalDir, verticalDir) {
+        const handle = document.getElementById(handleId);
+        if (!handle) return;
+
+        handle.addEventListener('mousedown', async (event) => {
+          if (alwaysOnTop) return;
+          event.preventDefault();
+          event.stopPropagation();
+
+          const startBounds = await window.overlayApi.getBounds();
+          if (!startBounds) return;
+
+          const startX = event.screenX;
+          const startY = event.screenY;
+          const ratio = startBounds.height > 0 ? (startBounds.width / startBounds.height) : 1;
+
+          function onMove(moveEvent) {
+            const dx = moveEvent.screenX - startX;
+            const dy = moveEvent.screenY - startY;
+
+            let width = startBounds.width;
+            let height = startBounds.height;
+            let x = startBounds.x;
+            let y = startBounds.y;
+
+            if (horizontalDir === 'e') width = startBounds.width + dx;
+            if (horizontalDir === 'w') {
+              width = startBounds.width - dx;
+              x = startBounds.x + dx;
+            }
+            if (verticalDir === 's') height = startBounds.height + dy;
+            if (verticalDir === 'n') {
+              height = startBounds.height - dy;
+              y = startBounds.y + dy;
+            }
+
+            const preserveRatio = (currentMode === 'map' || moveEvent.shiftKey) && ratio > 0;
+            if (preserveRatio) {
+              if (Math.abs(dx) > Math.abs(dy)) {
+                height = Math.round(width / ratio);
+              } else {
+                width = Math.round(height * ratio);
+              }
+              if (horizontalDir === 'w') {
+                x = startBounds.x + (startBounds.width - width);
+              }
+              if (verticalDir === 'n') {
+                y = startBounds.y + (startBounds.height - height);
+              }
+            }
+
+            window.overlayApi.setBounds({ x, y, width, height });
+          }
+
+          function onUp() {
+            window.removeEventListener('mousemove', onMove);
+            window.removeEventListener('mouseup', onUp);
+          }
+
+          window.addEventListener('mousemove', onMove);
+          window.addEventListener('mouseup', onUp);
+        });
+      }
+
+      bindResize('resizeSE', 'e', 's');
+      bindResize('resizeNE', 'e', 'n');
+      bindResize('resizeSW', 'w', 's');
+      bindResize('resizeNW', 'w', 'n');
+      bindResize('resizeE', 'e', '');
+      bindResize('resizeW', 'w', '');
+      bindResize('resizeS', '', 's');
+      bindResize('resizeN', '', 'n');
+
+      window.addEventListener('keydown', async (event) => {
+        if (alwaysOnTop) return;
+
+        if (event.key === '+' || event.key === '=') {
+          event.preventDefault();
+          const bounds = await window.overlayApi.getBounds();
+          if (!bounds) return;
+          await setOverlaySize(bounds.width * 1.08, bounds.height * 1.08, 'se');
+        }
+
+        if (event.key === '-') {
+          event.preventDefault();
+          const bounds = await window.overlayApi.getBounds();
+          if (!bounds) return;
+          await setOverlaySize(bounds.width * 0.92, bounds.height * 0.92, 'se');
+        }
+
+        if (event.key === '0') {
+          event.preventDefault();
+          await fitMapToTrueSize();
+        }
+      });
+    </script>
+  </body>
+</html>

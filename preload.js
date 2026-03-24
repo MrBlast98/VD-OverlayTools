@@ -1,0 +1,30 @@
+const { contextBridge, ipcRenderer } = require('electron');
+
+contextBridge.exposeInMainWorld('api', {
+  openOverlay: (opts) => ipcRenderer.invoke('open-overlay', opts),
+  closeOverlay: (opts) => ipcRenderer.invoke('close-overlay', opts),
+  updateOverlay: (opts) => ipcRenderer.send('update-overlay', opts),
+  setAlwaysOnTop: (val) => ipcRenderer.send('set-always-on-top', val),
+  setOpacity: (val) => ipcRenderer.send('set-opacity', val),
+  minimizeWindow: () => ipcRenderer.send('window-minimize'),
+  toggleFullscreen: () => ipcRenderer.invoke('window-toggle-fullscreen'),
+  closeWindow: () => ipcRenderer.send('window-close'),
+  chooseBackgroundMedia: () => ipcRenderer.invoke('choose-background-media'),
+  chooseCustomFont: () => ipcRenderer.invoke('choose-custom-font'),
+  spotifySearchTracks: (payload) => ipcRenderer.invoke('spotify-search-tracks', payload),
+  authLogin: (payload) => ipcRenderer.invoke('auth-login', payload),
+  authRegister: (payload) => ipcRenderer.invoke('auth-register', payload),
+  authMe: (payload) => ipcRenderer.invoke('auth-me', payload),
+  authLogout: () => ipcRenderer.invoke('auth-logout'),
+  themeMarketList: (payload) => ipcRenderer.invoke('theme-market-list', payload),
+  themeMarketPublish: (payload) => ipcRenderer.invoke('theme-market-publish', payload),
+  themeMarketUse: (payload) => ipcRenderer.invoke('theme-market-use', payload),
+  themeMarketFavorite: (payload) => ipcRenderer.invoke('theme-market-favorite', payload),
+  themeMarketUpdate: (payload) => ipcRenderer.invoke('theme-market-update', payload),
+  themeMarketDelete: (payload) => ipcRenderer.invoke('theme-market-delete', payload),
+  openExternalUrl: (url) => ipcRenderer.invoke('open-external-url', url),
+  detectCurrentMap: (payload) => ipcRenderer.invoke('detect-current-map', payload),
+  checkUpdates: () => ipcRenderer.invoke('check-updates'),
+  restartApp: () => ipcRenderer.invoke('restart-app'),
+  on: (channel, cb) => ipcRenderer.on(channel, (e, ...args) => cb(...args))
+});

@@ -2902,9 +2902,7 @@ async function restoreSession() {
   authState.serverUrl = String(prefs.serverUrl || DEFAULT_AUTH_SERVER_URL).trim();
   if (authServerUrl) {
     authServerUrl.value = authState.serverUrl;
-    authServerUrl.readOnly = true;
-    authServerUrl.setAttribute('aria-readonly', 'true');
-    authServerUrl.title = 'Auth host is pinned by secure runtime policy.';
+    authServerUrl.title = 'Enter the auth server URL for your deployment';
   }
   authUsername.value = prefs.username || '';
   authPassword.value = '';
@@ -5223,6 +5221,15 @@ if (showLoginBtn) {
 
 if (authServerUrl) {
   authServerUrl.addEventListener('change', () => {
+    const newUrl = authServerUrl.value.trim();
+    if (newUrl && newUrl !== authState.serverUrl) {
+      authState.serverUrl = newUrl;
+      const prefs = loadAuthPrefs();
+      saveAuthPrefs({
+        ...prefs,
+        serverUrl: newUrl
+      });
+    }
     authServerUrl.value = authState.serverUrl || DEFAULT_AUTH_SERVER_URL;
   });
 }
